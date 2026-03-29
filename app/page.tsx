@@ -1,461 +1,677 @@
-"use client"
-import { useState } from "react"
+import Script from "next/script"
 
-const FEATURES = [
-  {
-    icon: "📞",
-    title: "AI Caller — Emma",
-    desc: "New leads get called within 2 minutes. Emma qualifies them, gets their timeline, budget, and areas — then logs everything to the lead automatically.",
-  },
-  {
-    icon: "⚡",
-    title: "Instant Lead Capture",
-    desc: "One webhook URL. Paste it into your website, Zapier, IDX Broker, or Facebook Lead Ads. Every new lead lands in ZiggyHQ and gets called — no agent needed.",
-  },
-  {
-    icon: "📋",
-    title: "Follow-Up Queue",
-    desc: "Never miss a follow-up. See every lead that's overdue, due today, and upcoming — with one-click call, reschedule, and mark contacted.",
-  },
-  {
-    icon: "🤖",
-    title: "Action Plans",
-    desc: "Build automated follow-up sequences. Enroll a lead and the plan handles the cadence — calls, notes, and check-ins on a schedule.",
-  },
-  {
-    icon: "📊",
-    title: "Built-In Reporting",
-    desc: "Pipeline by stage, lead sources, conversion rates, activity this week. Everything you need to coach your team and grow your business.",
-  },
-  {
-    icon: "📥",
-    title: "CSV Import",
-    desc: "Bring your leads from Follow Up Boss, kvCORE, BoomTown, or any CSV. Auto-maps column names, deduplicates by email and phone.",
-  },
-]
-
-const PRICING = [
-  {
-    name: "Solo Agent",
-    price: "$149",
-    period: "/month",
-    desc: "Everything you need to stop losing leads.",
-    features: [
-      "AI Caller (Emma) — unlimited calls",
-      "Up to 2,500 leads",
-      "Follow-up queue & action plans",
-      "Lead capture webhook",
-      "CSV import",
-      "Reporting dashboard",
-    ],
-    cta: "Get Early Access",
-    highlight: false,
-  },
-  {
-    name: "Team",
-    price: "$299",
-    period: "/month",
-    desc: "For teams that want to dominate their market.",
-    features: [
-      "Everything in Solo Agent",
-      "Unlimited leads",
-      "Up to 10 agents",
-      "Partner lender management",
-      "Commission & referral tracking",
-      "Priority support",
-    ],
-    cta: "Get Early Access",
-    highlight: true,
-  },
-]
-
-const FAQS = [
-  {
-    q: "How fast does Emma call new leads?",
-    a: "Within 2.5 minutes by default — configurable from 1 to 10 minutes. Outside your call hours, Emma queues the call for 9 AM the next morning. TCPA compliant.",
-  },
-  {
-    q: "Does it sound like a robot?",
-    a: "No. Emma uses a natural, warm female voice. In testing, most people don't realize they're talking to AI until they ask — and we handle that honestly.",
-  },
-  {
-    q: "Can I use my agent's voice instead of Emma?",
-    a: "Yes. We support ElevenLabs voice clones. If your agent has YouTube content or recorded audio, we can create a clone of their voice for the AI calls.",
-  },
-  {
-    q: "Does it work with my existing website?",
-    a: "Yes. One webhook URL added to your contact form — that's it. Works with any website platform, Zapier, IDX Broker, and Facebook Lead Ads.",
-  },
-  {
-    q: "What happens to the call transcript?",
-    a: "Emma's full transcript, summary, and any lead details she captured (timeline, budget, areas, pre-approval) are automatically logged to the lead in ZiggyHQ.",
-  },
-  {
-    q: "Is it only for real estate?",
-    a: "Real estate is our first vertical, but the platform is built to work for any sales team. Mortgage, insurance, home services — if you have leads, ZiggyHQ works.",
-  },
-]
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "ZiggyHQ",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://ziggyhq.com",
+      "description": "CRM and business operations platform for small business. Visual pipeline, email sequences, smart lists, forms, and team management.",
+      "offers": {
+        "@type": "Offer",
+        "price": "49.00",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "49.00",
+          "priceCurrency": "USD",
+          "unitText": "MONTH",
+          "description": "Base plan — includes 5 seats. Additional seats $10/seat/mo."
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does ZiggyHQ cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ZiggyHQ starts at $49/mo and includes 5 seats. Need more users? Add seats for $10/seat/mo. You can also get all 10 ZiggyTech apps for $179/mo flat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many users are included in the base plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your $49/mo base plan includes 5 seats. You can add more team members for $10 per seat per month — no tiers, no surprises."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I own my data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Your contacts and pipeline data are yours. You can export everything as a CSV at any time. We will never sell your data or hold it hostage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the free trial work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You get 14 days free — no credit card required. Full access to all live features from day one. If it's not for you, just walk away."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I switch from GoHighLevel to ZiggyHQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Easy. Export your contacts from GoHighLevel as a CSV and import them into ZiggyHQ in minutes. We have an onboarding flow that walks you through it step by step."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the BYOK integrations for SMS and AI calling?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SMS sequences use Twilio (Bring Your Own Key) and AI calling uses Bland.ai (Bring Your Own Key). Both are currently in development. You connect your own account so you control costs and compliance — we just power the workflow."
+          }
+        }
+      ]
+    }
+  ]
+}
 
 export default function Home() {
-  const [email, setEmail] = useState("")
-  const [submitted, setSubmitted] = useState(false)
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-  const handleWaitlist = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
-    <main style={{ background: "#0a0a0a", minHeight: "100vh", color: "#fff" }}>
-      {/* Nav */}
+    <>
+      <Script
+        id="json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* ── NAV ── */}
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: "rgba(10,10,10,0.85)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #1a1a1a",
-        padding: "0 24px", height: "64px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+        background: "rgba(10,10,10,0.92)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid #1f1f1f",
+        padding: "0 24px",
       }}>
-        <div style={{ fontFamily: "'Bebas Neue', Impact, sans-serif", fontSize: "24px", letterSpacing: "0.05em" }}>
-          ZIGGY<span style={{ color: "#ff006e" }}>HQ</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-          <a href="#features" style={{ color: "#888", fontSize: "14px", textDecoration: "none" }}>Features</a>
-          <a href="#pricing" style={{ color: "#888", fontSize: "14px", textDecoration: "none" }}>Pricing</a>
-          <a href="#faq" style={{ color: "#888", fontSize: "14px", textDecoration: "none" }}>FAQ</a>
-          <a href="https://app.ziggyhq.com" style={{
-            background: "#ff006e", color: "#fff", padding: "8px 18px",
-            borderRadius: "8px", fontSize: "14px", fontWeight: 600, textDecoration: "none",
-          }}>Log In</a>
+        <div style={{
+          maxWidth: 1120,
+          margin: "0 auto",
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}>
+          <a href="/" style={{ fontSize: 22, fontWeight: 700, color: "#fff", textDecoration: "none", letterSpacing: "-0.5px" }}>
+            Ziggy<span style={{ color: "#ff006e" }}>HQ</span>
+          </a>
+
+          <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
+            <div style={{ display: "flex", gap: 28 }}>
+              {[["Features", "#features"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
+                <a key={label} href={href} style={{ color: "#888", fontSize: 15, textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "#888")}>
+                  {label}
+                </a>
+              ))}
+            </div>
+            <a href="https://app.ziggyhq.com/signup" style={{
+              background: "#ff006e",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "9px 20px",
+              borderRadius: 8,
+              fontSize: 14,
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+            }}>
+              Start Free Trial
+            </a>
+          </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section style={{ paddingTop: "160px", paddingBottom: "100px", textAlign: "center", position: "relative" }}>
-        {/* Glow bg */}
+      {/* ── HERO ── */}
+      <section style={{
+        padding: "100px 24px 80px",
+        textAlign: "center",
+        maxWidth: 800,
+        margin: "0 auto",
+      }}>
         <div style={{
-          position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)",
-          width: "600px", height: "400px", borderRadius: "50%",
-          background: "radial-gradient(ellipse, rgba(255,0,110,0.12) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }} />
-        <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px", position: "relative" }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: "8px",
-            background: "rgba(255,0,110,0.1)", border: "1px solid rgba(255,0,110,0.25)",
-            borderRadius: "100px", padding: "6px 14px", marginBottom: "32px",
-            fontSize: "13px", color: "#ff006e", fontWeight: 500,
-          }}>
-            ⚡ Now in early access — limited spots
-          </div>
-          <h1 style={{
-            fontFamily: "'Bebas Neue', Impact, sans-serif",
-            fontSize: "clamp(56px, 10vw, 110px)",
-            lineHeight: 0.95, letterSpacing: "0.02em", marginBottom: "28px",
-          }}>
-            THE CRM THAT<br />
-            <span style={{ color: "#ff006e" }}>CALLS YOUR LEADS</span><br />
-            FOR YOU
-          </h1>
-          <p style={{
-            fontSize: "clamp(17px, 2.5vw, 21px)", color: "#aaa",
-            maxWidth: "600px", margin: "0 auto 48px", lineHeight: 1.6,
-          }}>
-            New lead submits your form at 2 AM. Emma — your AI caller — rings them back within 2 minutes, qualifies them, and logs everything to the CRM. You wake up to a qualified lead.
-          </p>
-          <form onSubmit={handleWaitlist} style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-            {!submitted ? (
-              <>
-                <input
-                  type="email" required placeholder="Enter your email"
-                  value={email} onChange={e => setEmail(e.target.value)}
-                  style={{
-                    padding: "14px 20px", borderRadius: "8px", fontSize: "15px",
-                    background: "#141414", border: "1px solid #2d2d2d", color: "#fff",
-                    outline: "none", width: "300px",
-                  }}
-                />
-                <button type="submit" style={{
-                  padding: "14px 28px", background: "#ff006e", color: "#fff",
-                  border: "none", borderRadius: "8px", fontSize: "15px", fontWeight: 600,
-                  cursor: "pointer",
-                }}>
-                  Get Early Access
-                </button>
-              </>
-            ) : (
-              <div style={{
-                padding: "14px 28px", background: "rgba(34,197,94,0.1)",
-                border: "1px solid rgba(34,197,94,0.3)", borderRadius: "8px",
-                color: "#22c55e", fontSize: "15px", fontWeight: 500,
-              }}>
-                ✅ You&apos;re on the list — we&apos;ll be in touch soon!
-              </div>
-            )}
-          </form>
-          <p style={{ marginTop: "16px", color: "#555", fontSize: "13px" }}>
-            No credit card required. Cancel anytime.
-          </p>
+          display: "inline-block",
+          background: "rgba(255,0,110,0.1)",
+          border: "1px solid rgba(255,0,110,0.25)",
+          borderRadius: 99,
+          padding: "6px 16px",
+          fontSize: 13,
+          color: "#ff006e",
+          fontWeight: 600,
+          marginBottom: 28,
+          letterSpacing: "0.02em",
+        }}>
+          GoHighLevel Alternative · Half the price
         </div>
+
+        <h1 style={{
+          fontSize: "clamp(42px, 6vw, 68px)",
+          fontWeight: 700,
+          lineHeight: 1.08,
+          letterSpacing: "-1.5px",
+          marginBottom: 24,
+          color: "#fff",
+        }}>
+          The CRM that closes deals,<br />
+          <span style={{
+            background: "linear-gradient(135deg, #fff 0%, #ff006e 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>not your wallet.</span>
+        </h1>
+
+        <p style={{ fontSize: 19, color: "#888", lineHeight: 1.6, marginBottom: 40, maxWidth: 580, margin: "0 auto 40px" }}>
+          GoHighLevel charges $97–$297/mo and takes weeks to set up. ZiggyHQ gives you a full CRM, visual pipeline, and email automation for <strong style={{ color: "#fff" }}>$49/mo</strong> — and you're live in minutes.
+        </p>
+
+        <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 20 }}>
+          <a href="https://app.ziggyhq.com/signup" style={{
+            background: "#ff006e",
+            color: "#fff",
+            textDecoration: "none",
+            padding: "15px 30px",
+            borderRadius: 10,
+            fontSize: 16,
+            fontWeight: 600,
+          }}>
+            Start Free Trial — 14 days free
+          </a>
+          <a href="#pricing" style={{
+            background: "transparent",
+            color: "#fff",
+            textDecoration: "none",
+            padding: "15px 30px",
+            borderRadius: 10,
+            fontSize: 16,
+            fontWeight: 600,
+            border: "1px solid #333",
+          }}>
+            See Pricing
+          </a>
+        </div>
+
+        <p style={{ fontSize: 13, color: "#555", letterSpacing: "0.03em" }}>
+          No credit card · 14-day free trial · Cancel anytime
+        </p>
       </section>
 
-      {/* Social proof bar */}
-      <div style={{
-        borderTop: "1px solid #1a1a1a", borderBottom: "1px solid #1a1a1a",
-        padding: "24px", textAlign: "center",
-        display: "flex", gap: "48px", justifyContent: "center", flexWrap: "wrap",
+      {/* ── PROBLEM STRIP ── */}
+      <section style={{
+        background: "#0f0f0f",
+        borderTop: "1px solid #1f1f1f",
+        borderBottom: "1px solid #1f1f1f",
+        padding: "56px 24px",
       }}>
-        {[
-          { stat: "< 2 min", label: "Average call response time" },
-          { stat: "24/7", label: "Emma never sleeps" },
-          { stat: "3 scripts", label: "New lead, Home value, Listing inquiry" },
-          { stat: "TCPA", label: "Compliant call hours built in" },
-        ].map(({ stat, label }) => (
-          <div key={stat} style={{ textAlign: "center" }}>
-            <div style={{ fontFamily: "'Bebas Neue', Impact, sans-serif", fontSize: "32px", color: "#ff006e" }}>{stat}</div>
-            <div style={{ fontSize: "12px", color: "#555", marginTop: "2px" }}>{label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Features */}
-      <section id="features" style={{ padding: "100px 24px" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "64px" }}>
-            <h2 style={{
-              fontFamily: "'Bebas Neue', Impact, sans-serif",
-              fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "0.02em", marginBottom: "16px",
-            }}>
-              EVERYTHING A <span style={{ color: "#ff006e" }}>CLOSER</span> NEEDS
-            </h2>
-            <p style={{ color: "#888", fontSize: "17px", maxWidth: "500px", margin: "0 auto" }}>
-              Built for real estate agents who are done losing deals because they couldn&apos;t follow up fast enough.
-            </p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "20px" }}>
-            {FEATURES.map((f) => (
-              <div key={f.title} style={{
-                background: "#141414", border: "1px solid #2d2d2d", borderRadius: "16px",
-                padding: "28px",
-                transition: "border-color 0.2s",
-              }}>
-                <div style={{ fontSize: "32px", marginBottom: "16px" }}>{f.icon}</div>
-                <h3 style={{ fontSize: "17px", fontWeight: 600, marginBottom: "10px" }}>{f.title}</h3>
-                <p style={{ color: "#888", fontSize: "14px", lineHeight: 1.6 }}>{f.desc}</p>
-              </div>
-            ))}
-          </div>
+        <div style={{
+          maxWidth: 1000,
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gap: 32,
+          textAlign: "center",
+        }}>
+          {[
+            {
+              emoji: "😤",
+              headline: "GoHighLevel is overkill.",
+              body: "You don't need an agency-grade platform with 200 features you'll never touch. You need something that works on day one.",
+            },
+            {
+              emoji: "📊",
+              headline: "Spreadsheets don't scale.",
+              body: "You're losing leads in a Google Sheet. You forget to follow up. Deals die in your inbox. You already know the problem.",
+            },
+            {
+              emoji: "💸",
+              headline: "You're paying for bloat.",
+              body: "HubSpot locks the good stuff behind $400/mo plans. Salesforce costs more than your rent. There's a better way.",
+            },
+          ].map(({ emoji, headline, body }) => (
+            <div key={headline}>
+              <div style={{ fontSize: 36, marginBottom: 12 }}>{emoji}</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 8 }}>{headline}</h3>
+              <p style={{ fontSize: 15, color: "#666", lineHeight: 1.6 }}>{body}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* How it works */}
-      <section style={{ padding: "100px 24px", background: "#0d0d0d" }}>
-        <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{
-            fontFamily: "'Bebas Neue', Impact, sans-serif",
-            fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "0.02em", marginBottom: "16px",
-          }}>
-            HOW IT <span style={{ color: "#ff006e" }}>WORKS</span>
+      {/* ── FEATURES ── */}
+      <section id="features" style={{ padding: "96px 24px", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 700, letterSpacing: "-1px", marginBottom: 16 }}>
+            Everything you need. Nothing you don't.
           </h2>
-          <p style={{ color: "#888", fontSize: "17px", marginBottom: "64px" }}>
-            From form submission to qualified lead — fully automated.
+          <p style={{ fontSize: 17, color: "#666", maxWidth: 500, margin: "0 auto" }}>
+            Built for small business owners who want results, not a second job learning software.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+        </div>
+
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          gap: 20,
+        }}>
+          {[
+            {
+              icon: "🎯",
+              title: "Visual Sales Pipeline",
+              desc: "Drag-and-drop deal stages. See your entire pipeline at a glance. Customize stages to match how you actually sell.",
+            },
+            {
+              icon: "📧",
+              title: "Email Sequences & Follow-Up",
+              desc: "Set up automated follow-up sequences that run while you sleep. Never lose a lead to silence again.",
+            },
+            {
+              icon: "🗂️",
+              title: "Smart Lists",
+              desc: "Dynamic contact segments that update automatically. Target the right people at the right time — without manual sorting.",
+            },
+            {
+              icon: "⚡",
+              title: "Action Plans",
+              desc: "Repeatable workflow templates for your most common processes. Onboard a client. Follow up a quote. Run it the same way every time.",
+            },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} style={{
+              background: "#111",
+              border: "1px solid #1f1f1f",
+              borderRadius: 16,
+              padding: "28px 24px",
+              transition: "border-color 0.2s",
+            }}>
+              <div style={{ fontSize: 32, marginBottom: 14 }}>{icon}</div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 10 }}>{title}</h3>
+              <p style={{ fontSize: 14, color: "#666", lineHeight: 1.65 }}>{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Additional features list */}
+        <div style={{
+          marginTop: 32,
+          background: "#111",
+          border: "1px solid #1f1f1f",
+          borderRadius: 16,
+          padding: "28px 32px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "12px 40px",
+        }}>
+          <p style={{ color: "#555", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", width: "100%", marginBottom: 4 }}>
+            Also included
+          </p>
+          {["Contact & lead management", "Forms (embed anywhere)", "Team management & roles", "Reports & analytics", "Lead import (CSV)", "Notifications center", "Customizable pipeline stages", "Onboarding flow"].map(f => (
+            <span key={f} style={{ fontSize: 14, color: "#888", display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ color: "#ff006e", fontWeight: 700 }}>✓</span> {f}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ── COMING SOON STRIP ── */}
+      <section style={{
+        background: "#0d0d0d",
+        borderTop: "1px solid #1f1f1f",
+        borderBottom: "1px solid #1f1f1f",
+        padding: "64px 24px",
+      }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>What's coming next</h2>
+            <p style={{ color: "#555", fontSize: 15 }}>We ship fast. Here's what's already in development.</p>
+          </div>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gap: 16,
+          }}>
             {[
-              { step: "01", title: "Lead submits your form", desc: "On your website, IDX page, or Facebook ad — at any hour." },
-              { step: "02", title: "ZiggyHQ captures the lead instantly", desc: "The lead appears in your CRM with source, timestamp, and contact info." },
-              { step: "03", title: "Emma calls them within 2 minutes", desc: "Your AI caller introduces herself, confirms who she's speaking with, and proactively explains why she's calling." },
-              { step: "04", title: "Emma qualifies the lead", desc: "Timeline, budget, pre-approval status, areas of interest — all captured in natural conversation." },
-              { step: "05", title: "Everything logs automatically", desc: "Full transcript, summary, and lead details update the CRM the moment the call ends." },
-              { step: "06", title: "You close the deal", desc: "Wake up to a warm, qualified lead ready for your personal follow-up." },
-            ].map((item, i) => (
-              <div key={item.step} style={{
-                display: "flex", gap: "24px", textAlign: "left", padding: "32px 0",
-                borderBottom: i < 5 ? "1px solid #1a1a1a" : "none",
+              {
+                icon: "💬",
+                title: "SMS Sequences",
+                sub: "via Twilio (BYOK)",
+                badge: "In Development",
+                badgeColor: "#ff9500",
+                desc: "Automated text follow-ups. Bring your own Twilio account — you control the cost.",
+              },
+              {
+                icon: "🤖",
+                title: "AI Calling",
+                sub: "via Bland.ai (BYOK)",
+                badge: "In Development",
+                badgeColor: "#ff9500",
+                desc: "AI-powered outbound calls that qualify leads and book appointments automatically.",
+              },
+              {
+                icon: "📅",
+                title: "Google Calendar Sync",
+                sub: "",
+                badge: "Coming Soon",
+                badgeColor: "#0066ff",
+                desc: "Sync meetings and follow-ups straight to your calendar. Zero double-booking.",
+              },
+            ].map(({ icon, title, sub, badge, badgeColor, desc }) => (
+              <div key={title} style={{
+                background: "#111",
+                border: "1px solid #1f1f1f",
+                borderRadius: 14,
+                padding: "24px 22px",
               }}>
-                <div style={{
-                  fontFamily: "'Bebas Neue', Impact, sans-serif",
-                  fontSize: "48px", color: "#ff006e", opacity: 0.4,
-                  lineHeight: 1, flexShrink: 0, width: "60px",
-                }}>{item.step}</div>
-                <div>
-                  <h3 style={{ fontSize: "17px", fontWeight: 600, marginBottom: "8px" }}>{item.title}</h3>
-                  <p style={{ color: "#888", fontSize: "14px", lineHeight: 1.6 }}>{item.desc}</p>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+                  <span style={{ fontSize: 28 }}>{icon}</span>
+                  <span style={{
+                    background: `${badgeColor}20`,
+                    color: badgeColor,
+                    border: `1px solid ${badgeColor}40`,
+                    borderRadius: 99,
+                    padding: "3px 10px",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: "0.04em",
+                    textTransform: "uppercase",
+                  }}>{badge}</span>
                 </div>
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginBottom: 2 }}>{title}</h3>
+                {sub && <p style={{ fontSize: 12, color: "#555", marginBottom: 8 }}>{sub}</p>}
+                <p style={{ fontSize: 13, color: "#666", lineHeight: 1.6, marginTop: 6 }}>{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" style={{ padding: "100px 24px" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "64px" }}>
-            <h2 style={{
-              fontFamily: "'Bebas Neue', Impact, sans-serif",
-              fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "0.02em", marginBottom: "16px",
-            }}>
-              SIMPLE <span style={{ color: "#ff006e" }}>PRICING</span>
-            </h2>
-            <p style={{ color: "#888", fontSize: "17px" }}>No per-seat nonsense. No hidden fees. Just results.</p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
-            {PRICING.map((plan) => (
-              <div key={plan.name} style={{
-                background: plan.highlight ? "#141414" : "#0d0d0d",
-                border: plan.highlight ? "1px solid #ff006e" : "1px solid #2d2d2d",
-                borderRadius: "20px", padding: "36px",
-                position: "relative",
-              }}>
-                {plan.highlight && (
-                  <div style={{
-                    position: "absolute", top: "-12px", left: "50%", transform: "translateX(-50%)",
-                    background: "#ff006e", color: "#fff", fontSize: "11px", fontWeight: 700,
-                    letterSpacing: "0.1em", padding: "4px 14px", borderRadius: "100px",
-                    textTransform: "uppercase",
-                  }}>Most Popular</div>
-                )}
-                <div style={{ marginBottom: "8px", fontSize: "13px", color: "#888", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>{plan.name}</div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: "4px", marginBottom: "8px" }}>
-                  <span style={{ fontFamily: "'Bebas Neue', Impact, sans-serif", fontSize: "56px", color: plan.highlight ? "#ff006e" : "#fff" }}>{plan.price}</span>
-                  <span style={{ color: "#555", fontSize: "15px" }}>{plan.period}</span>
-                </div>
-                <p style={{ color: "#888", fontSize: "14px", marginBottom: "28px", lineHeight: 1.5 }}>{plan.desc}</p>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px", marginBottom: "32px" }}>
-                  {plan.features.map(f => (
-                    <li key={f} style={{ display: "flex", gap: "10px", fontSize: "14px", color: "#ccc" }}>
-                      <span style={{ color: "#22c55e", flexShrink: 0 }}>✓</span> {f}
-                    </li>
-                  ))}
-                </ul>
-                <a href="#waitlist" style={{
-                  display: "block", textAlign: "center", padding: "14px",
-                  background: plan.highlight ? "#ff006e" : "transparent",
-                  border: plan.highlight ? "none" : "1px solid #2d2d2d",
-                  borderRadius: "8px", color: "#fff", fontWeight: 600,
-                  fontSize: "15px", textDecoration: "none",
-                  transition: "opacity 0.2s",
-                }}>{plan.cta}</a>
-              </div>
-            ))}
-          </div>
-          <p style={{ textAlign: "center", color: "#555", fontSize: "13px", marginTop: "24px" }}>
-            Early access pricing — locked in for life when you join now.
+      {/* ── COMPETITOR COMPARISON ── */}
+      <section style={{ padding: "96px 24px", maxWidth: 900, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 700, letterSpacing: "-0.8px", marginBottom: 12 }}>
+            ZiggyHQ vs GoHighLevel
+          </h2>
+          <p style={{ color: "#666", fontSize: 16 }}>
+            Same core features. Half the price. A fraction of the learning curve.
           </p>
         </div>
+
+        <div style={{ overflowX: "auto" }}>
+          <table style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            fontSize: 15,
+          }}>
+            <thead>
+              <tr>
+                <th style={{ textAlign: "left", padding: "14px 20px", color: "#555", fontWeight: 600, fontSize: 13, borderBottom: "1px solid #1f1f1f" }}>Feature</th>
+                <th style={{ textAlign: "center", padding: "14px 20px", color: "#ff006e", fontWeight: 700, fontSize: 15, borderBottom: "1px solid #1f1f1f", background: "rgba(255,0,110,0.05)", borderRadius: "8px 8px 0 0" }}>ZiggyHQ</th>
+                <th style={{ textAlign: "center", padding: "14px 20px", color: "#555", fontWeight: 600, fontSize: 13, borderBottom: "1px solid #1f1f1f" }}>GoHighLevel</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Price", "$49/mo", "$97–$297/mo"],
+                ["Seats included", "5 seats", "1 user (Starter)"],
+                ["Contacts limit", "Unlimited", "Unlimited"],
+                ["Visual pipeline", "✅ Yes", "✅ Yes"],
+                ["Email sequences", "✅ Yes", "✅ Yes"],
+                ["SMS sequences", "🔧 Coming (BYOK Twilio)", "✅ Yes"],
+                ["AI calling", "🔧 Coming (BYOK Bland.ai)", "✅ Yes"],
+                ["Setup complexity", "Low — live in minutes", "High — days to configure"],
+                ["Contract required", "No — cancel anytime", "No"],
+              ].map(([feature, ziggy, ghl], i) => (
+                <tr key={feature} style={{ background: i % 2 === 0 ? "transparent" : "#0d0d0d" }}>
+                  <td style={{ padding: "14px 20px", color: "#888", borderBottom: "1px solid #161616" }}>{feature}</td>
+                  <td style={{ padding: "14px 20px", color: "#fff", textAlign: "center", borderBottom: "1px solid #161616", background: "rgba(255,0,110,0.03)", fontWeight: 500 }}>{ziggy}</td>
+                  <td style={{ padding: "14px 20px", color: "#555", textAlign: "center", borderBottom: "1px solid #161616" }}>{ghl}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p style={{ textAlign: "center", marginTop: 20, fontSize: 13, color: "#444" }}>
+          Pricing data sourced from GoHighLevel.com · Updated March 2026
+        </p>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" style={{ padding: "100px 24px", background: "#0d0d0d" }}>
-        <div style={{ maxWidth: "720px", margin: "0 auto" }}>
-          <h2 style={{
-            fontFamily: "'Bebas Neue', Impact, sans-serif",
-            fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "0.02em",
-            textAlign: "center", marginBottom: "64px",
-          }}>
-            COMMON <span style={{ color: "#ff006e" }}>QUESTIONS</span>
+      {/* ── PRICING ── */}
+      <section id="pricing" style={{
+        padding: "96px 24px",
+        background: "#080808",
+        borderTop: "1px solid #1f1f1f",
+        borderBottom: "1px solid #1f1f1f",
+      }}>
+        <div style={{ maxWidth: 520, margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 700, letterSpacing: "-0.8px", marginBottom: 12 }}>
+            Simple pricing. No surprises.
           </h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {FAQS.map((faq, i) => (
-              <div key={i} style={{ borderBottom: "1px solid #1a1a1a" }}>
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} style={{
-                  width: "100%", textAlign: "left", padding: "24px 0",
-                  background: "none", border: "none", color: "#fff",
-                  fontSize: "16px", fontWeight: 500, cursor: "pointer",
-                  display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px",
-                }}>
-                  {faq.q}
-                  <span style={{ color: "#ff006e", fontSize: "20px", flexShrink: 0 }}>{openFaq === i ? "−" : "+"}</span>
-                </button>
-                {openFaq === i && (
-                  <p style={{ color: "#888", fontSize: "14px", lineHeight: 1.7, paddingBottom: "24px" }}>{faq.a}</p>
-                )}
+          <p style={{ color: "#666", fontSize: 16, marginBottom: 48 }}>
+            One plan. Everything included. Scales with your team.
+          </p>
+
+          <div style={{
+            background: "#111",
+            border: "2px solid #ff006e",
+            borderRadius: 20,
+            padding: "40px 36px",
+            marginBottom: 20,
+          }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#ff006e", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>
+              ZiggyHQ — Base Plan
+            </div>
+            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: 4, marginBottom: 4 }}>
+              <span style={{ fontSize: 64, fontWeight: 700, color: "#fff", letterSpacing: "-2px" }}>$49</span>
+              <span style={{ fontSize: 18, color: "#555" }}>/mo</span>
+            </div>
+            <p style={{ color: "#555", fontSize: 14, marginBottom: 32 }}>
+              5 seats included · +$10/seat/mo after that
+            </p>
+
+            <ul style={{ listStyle: "none", padding: 0, marginBottom: 32, textAlign: "left" }}>
+              {[
+                "Contact & lead management",
+                "Visual sales pipeline",
+                "Email sequences & automation",
+                "Smart lists",
+                "Action plans",
+                "Forms (embed anywhere)",
+                "Team management (up to 5 seats)",
+                "Reports & analytics",
+                "CSV import",
+                "Notifications center",
+              ].map(item => (
+                <li key={item} style={{ padding: "7px 0", fontSize: 15, color: "#ccc", display: "flex", alignItems: "center", gap: 10, borderBottom: "1px solid #1a1a1a" }}>
+                  <span style={{ color: "#ff006e", fontWeight: 700, flexShrink: 0 }}>✓</span> {item}
+                </li>
+              ))}
+            </ul>
+
+            <a href="https://app.ziggyhq.com/signup" style={{
+              display: "block",
+              background: "#ff006e",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "16px",
+              borderRadius: 10,
+              fontSize: 16,
+              fontWeight: 700,
+              textAlign: "center",
+            }}>
+              Start Free Trial — No credit card required
+            </a>
+          </div>
+
+          {/* Bundle callout */}
+          <div style={{
+            background: "#111",
+            border: "1px solid #1f1f1f",
+            borderRadius: 14,
+            padding: "22px 24px",
+            textAlign: "center",
+          }}>
+            <p style={{ color: "#888", fontSize: 14, lineHeight: 1.6 }}>
+              🏢 <strong style={{ color: "#fff" }}>Running a full business?</strong> Get all 10 ZiggyTech apps — including ZiggyHQ — for{" "}
+              <strong style={{ color: "#ff006e" }}>$179/mo flat</strong> with the ZiggyTech Business Suite.{" "}
+              <a href="https://ziggybusiness.com" style={{ color: "#ff006e", textDecoration: "underline" }}>Learn more →</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section style={{ padding: "96px 24px", maxWidth: 740, margin: "0 auto" }}>
+        <h2 style={{ fontSize: "clamp(28px, 4vw, 38px)", fontWeight: 700, letterSpacing: "-0.6px", marginBottom: 48, textAlign: "center" }}>
+          Questions? We've got answers.
+        </h2>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          {[
+            {
+              q: "How much does ZiggyHQ cost?",
+              a: "$49/mo. That includes 5 seats. Need more team members? Add them for $10/seat/mo. No tiered plans, no annual lock-in, no surprise fees.",
+            },
+            {
+              q: "How many users are included in the base plan?",
+              a: "Five. Most small business teams run with 2–4 people, so your whole team is covered. If you grow beyond that, extra seats are $10 each — not $97/mo like GoHighLevel charges for their next tier.",
+            },
+            {
+              q: "Do I own my data?",
+              a: "Yes, completely. Your contacts, deals, and activity history are yours. Export everything as a CSV whenever you want. We will never lock your data or sell it to third parties.",
+            },
+            {
+              q: "How does the free trial work?",
+              a: "Sign up and get 14 days free — no credit card required. You get full access to every live feature from the moment you create your account. If you don't want to continue, just don't. Nothing to cancel.",
+            },
+            {
+              q: "How do I switch from GoHighLevel to ZiggyHQ?",
+              a: "Export your contacts from GoHighLevel as a CSV file and import them into ZiggyHQ. Takes about 10 minutes. Our onboarding flow walks you through everything: pipeline setup, team invites, and your first email sequence.",
+            },
+            {
+              q: "What are the BYOK integrations for SMS and AI calling?",
+              a: "Both SMS (via Twilio) and AI calling (via Bland.ai) use a Bring Your Own Key model. You connect your own Twilio or Bland.ai account. That means you control costs, compliance, and data. We power the workflow; you own the accounts. Both features are currently in development.",
+            },
+          ].map(({ q, a }, i) => (
+            <details key={q} style={{
+              background: "#111",
+              border: "1px solid #1f1f1f",
+              borderRadius: 10,
+              padding: "0",
+              overflow: "hidden",
+            }}>
+              <summary style={{
+                padding: "20px 24px",
+                fontSize: 16,
+                fontWeight: 600,
+                color: "#fff",
+                cursor: "pointer",
+                listStyle: "none",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}>
+                {q}
+                <span style={{ color: "#ff006e", fontSize: 20, fontWeight: 400, flexShrink: 0 }}>+</span>
+              </summary>
+              <div style={{ padding: "0 24px 20px", fontSize: 15, color: "#777", lineHeight: 1.7, borderTop: "1px solid #1a1a1a" }}>
+                <p style={{ marginTop: 16 }}>{a}</p>
               </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* ── FINAL CTA ── */}
+      <section style={{
+        padding: "100px 24px",
+        textAlign: "center",
+        background: "linear-gradient(180deg, #0a0a0a 0%, #0d0005 100%)",
+        borderTop: "1px solid #1f1f1f",
+      }}>
+        <h2 style={{
+          fontSize: "clamp(36px, 5vw, 58px)",
+          fontWeight: 700,
+          letterSpacing: "-1.5px",
+          marginBottom: 20,
+          lineHeight: 1.1,
+        }}>
+          Your pipeline isn't going to<br />
+          <span style={{
+            background: "linear-gradient(135deg, #fff 0%, #ff006e 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>fill itself.</span>
+        </h2>
+        <p style={{ fontSize: 18, color: "#555", marginBottom: 40 }}>
+          14 days free. No credit card. Cancel anytime.
+        </p>
+        <a href="https://app.ziggyhq.com/signup" style={{
+          display: "inline-block",
+          background: "#ff006e",
+          color: "#fff",
+          textDecoration: "none",
+          padding: "18px 40px",
+          borderRadius: 12,
+          fontSize: 18,
+          fontWeight: 700,
+          letterSpacing: "-0.2px",
+        }}>
+          Start Free Trial →
+        </a>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer style={{
+        background: "#050505",
+        borderTop: "1px solid #111",
+        padding: "40px 24px",
+      }}>
+        <div style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 20,
+          textAlign: "center",
+        }}>
+          <div style={{ display: "flex", gap: 28, flexWrap: "wrap", justifyContent: "center" }}>
+            {[["Home", "/"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Privacy", "/privacy"], ["Terms", "/terms"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
+              <a key={label} href={href} style={{ color: "#555", fontSize: 14, textDecoration: "none", fontWeight: 500 }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#888")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#555")}>
+                {label}
+              </a>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section id="waitlist" style={{ padding: "100px 24px", textAlign: "center" }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <div style={{
-            position: "relative",
-            background: "linear-gradient(135deg, #141414 0%, #1a0a12 100%)",
-            border: "1px solid rgba(255,0,110,0.2)",
-            borderRadius: "24px", padding: "64px 48px",
-          }}>
-            <div style={{
-              position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
-              width: "400px", height: "300px",
-              background: "radial-gradient(ellipse, rgba(255,0,110,0.08) 0%, transparent 70%)",
-              pointerEvents: "none",
-            }} />
-            <h2 style={{
-              fontFamily: "'Bebas Neue', Impact, sans-serif",
-              fontSize: "clamp(36px, 6vw, 60px)", letterSpacing: "0.02em", marginBottom: "16px",
-            }}>
-              READY TO STOP<br /><span style={{ color: "#ff006e" }}>LOSING LEADS?</span>
-            </h2>
-            <p style={{ color: "#888", fontSize: "17px", marginBottom: "40px", lineHeight: 1.6 }}>
-              Join the waitlist today. Early access members get founding member pricing — locked in forever.
-            </p>
-            <form onSubmit={handleWaitlist} style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-              {!submitted ? (
-                <>
-                  <input
-                    type="email" required placeholder="Enter your email"
-                    value={email} onChange={e => setEmail(e.target.value)}
-                    style={{
-                      padding: "14px 20px", borderRadius: "8px", fontSize: "15px",
-                      background: "#0a0a0a", border: "1px solid #2d2d2d", color: "#fff",
-                      outline: "none", width: "280px",
-                    }}
-                  />
-                  <button type="submit" style={{
-                    padding: "14px 28px", background: "#ff006e", color: "#fff",
-                    border: "none", borderRadius: "8px", fontSize: "15px", fontWeight: 600,
-                    cursor: "pointer",
-                  }}>
-                    Join Waitlist
-                  </button>
-                </>
-              ) : (
-                <div style={{
-                  padding: "14px 28px", background: "rgba(34,197,94,0.1)",
-                  border: "1px solid rgba(34,197,94,0.3)", borderRadius: "8px",
-                  color: "#22c55e", fontSize: "15px", fontWeight: 500,
-                }}>
-                  ✅ You&apos;re on the list — we&apos;ll be in touch soon!
-                </div>
-              )}
-            </form>
-            <p style={{ marginTop: "16px", color: "#444", fontSize: "13px" }}>
-              No credit card required. Unsubscribe anytime.
-            </p>
-          </div>
-        </div>
-      </section>
+          <p style={{ fontSize: 13, color: "#333" }}>
+            Part of{" "}
+            <a href="https://ziggybusiness.com" style={{ color: "#555", textDecoration: "none" }}>ZiggyTech Business Suite</a>
+            {" · "}
+            <a href="https://ziggybusiness.com" style={{ color: "#555", textDecoration: "none" }}>ziggybusiness.com</a>
+          </p>
 
-      {/* Footer */}
-      <footer style={{
-        borderTop: "1px solid #1a1a1a", padding: "40px 24px",
-        display: "flex", justifyContent: "space-between", alignItems: "center",
-        flexWrap: "wrap", gap: "16px", maxWidth: "1100px", margin: "0 auto",
-      }}>
-        <div style={{ fontFamily: "'Bebas Neue', Impact, sans-serif", fontSize: "20px" }}>
-          ZIGGY<span style={{ color: "#ff006e" }}>HQ</span>
-        </div>
-        <div style={{ color: "#444", fontSize: "13px" }}>
-          © 2026 ZiggyTech Ventures LLC · Built with ⚡ by ZiggyTech
-        </div>
-        <div style={{ display: "flex", gap: "24px" }}>
-          <a href="/privacy" style={{ color: "#444", fontSize: "13px", textDecoration: "none" }}>Privacy</a>
-          <a href="/terms" style={{ color: "#444", fontSize: "13px", textDecoration: "none" }}>Terms</a>
-          <a href="mailto:hello@ziggyhq.com" style={{ color: "#444", fontSize: "13px", textDecoration: "none" }}>Contact</a>
+          <p style={{ fontSize: 13, color: "#2a2a2a" }}>
+            © 2026 ZiggyHQ. All rights reserved.
+          </p>
         </div>
       </footer>
-    </main>
+    </>
   )
 }
