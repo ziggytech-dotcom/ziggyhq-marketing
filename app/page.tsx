@@ -113,9 +113,7 @@ export default function Home() {
           <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
             <div style={{ display: "flex", gap: 28 }}>
               {[["Features", "#features"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
-                <a key={label} href={href} style={{ color: "#888", fontSize: 15, textDecoration: "none", fontWeight: 500, transition: "color 0.2s" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "#888")}>
+                <a key={label} href={href} style={{ color: "#888", fontSize: 15, textDecoration: "none", fontWeight: 500 }}>
                   {label}
                 </a>
               ))}
@@ -652,9 +650,7 @@ export default function Home() {
         }}>
           <div style={{ display: "flex", gap: 28, flexWrap: "wrap", justifyContent: "center" }}>
             {[["Home", "/"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Privacy", "/privacy"], ["Terms", "/terms"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
-              <a key={label} href={href} style={{ color: "#555", fontSize: 14, textDecoration: "none", fontWeight: 500 }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#888")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#555")}>
+              <a key={label} href={href} style={{ color: "#555", fontSize: 14, textDecoration: "none", fontWeight: 500 }}>
                 {label}
               </a>
             ))}
