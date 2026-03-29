@@ -112,7 +112,7 @@ export default function Home() {
 
           <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
             <div style={{ display: "flex", gap: 28 }}>
-              {[["Features", "#features"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
+              {[["Features", "#features"], ["Compare", "/vs/gohighlevel"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
                 <a key={label} href={href} style={{ color: "#888", fontSize: 15, textDecoration: "none", fontWeight: 500 }}>
                   {label}
                 </a>
@@ -320,6 +320,94 @@ export default function Home() {
               <span style={{ color: "#ff006e", fontWeight: 700 }}>✓</span> {f}
             </span>
           ))}
+        </div>
+      </section>
+
+      {/* ── INDUSTRIES ── */}
+      <section style={{
+        padding: "96px 24px",
+        background: "#080808",
+        borderTop: "1px solid #1f1f1f",
+        borderBottom: "1px solid #1f1f1f",
+      }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 56 }}>
+            <h2 style={{ fontSize: "clamp(30px, 4vw, 46px)", fontWeight: 700, letterSpacing: "-1px", marginBottom: 14, color: "#fff" }}>
+              Built for your industry
+            </h2>
+            <p style={{ fontSize: 17, color: "#666", maxWidth: 500, margin: "0 auto" }}>
+              Pre-built pipeline templates so you're set up in minutes, not weeks.
+            </p>
+          </div>
+
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: 16,
+            marginBottom: 40,
+          }}>
+            {[
+              { icon: "🏠", name: "Real Estate", desc: "Lead → Showing → Offer → Close pipeline" },
+              { icon: "🔨", name: "Contractors & Trades", desc: "Estimate → Job → Invoice → Review pipeline" },
+              { icon: "🎓", name: "Coaches & Consultants", desc: "Discovery → Proposal → Onboarding → Retention" },
+              { icon: "💊", name: "Med Spa & Wellness", desc: "Inquiry → Consult → Treatment → Rebooking" },
+              { icon: "🏢", name: "Marketing Agencies", desc: "Lead → Proposal → Onboarding → Monthly Retainer" },
+              { icon: "🏦", name: "Mortgage & Finance", desc: "Pre-qual → Application → Processing → Close" },
+              { icon: "🚗", name: "Auto Sales & Dealerships", desc: "Inquiry → Test Drive → Finance → Delivery" },
+              { icon: "🧹", name: "Home Services", desc: "Request → Quote → Schedule → Complete → Review" },
+              { icon: "🩺", name: "Healthcare Practices", desc: "Inquiry → Appointment → Follow-up → Retention" },
+              { icon: "🛡️", name: "Insurance Agents", desc: "Lead → Quote → Bind → Renewal pipeline" },
+            ].map(({ icon, name, desc }) => (
+              <div key={name} style={{
+                background: "#111",
+                border: "1px solid #1f1f1f",
+                borderRadius: 14,
+                padding: "24px 22px",
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 16,
+              }}>
+                <span style={{ fontSize: 32, flexShrink: 0, lineHeight: 1 }}>{icon}</span>
+                <div>
+                  <h3 style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 5 }}>{name}</h3>
+                  <p style={{ fontSize: 13, color: "#666", lineHeight: 1.55, margin: 0 }}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Custom industry callout */}
+          <div style={{
+            background: "rgba(255,0,110,0.06)",
+            border: "1px solid rgba(255,0,110,0.2)",
+            borderRadius: 14,
+            padding: "32px 36px",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 20,
+          }}>
+            <div>
+              <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 6 }}>Don't see your industry?</h3>
+              <p style={{ fontSize: 15, color: "#888", maxWidth: 480, lineHeight: 1.6, margin: 0 }}>
+                We build custom pipeline templates for any business type. Every plan includes onboarding support.
+              </p>
+            </div>
+            <a href="mailto:hello@ziggyhq.com" style={{
+              background: "#ff006e",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "13px 26px",
+              borderRadius: 9,
+              fontSize: 15,
+              fontWeight: 600,
+              whiteSpace: "nowrap",
+              flexShrink: 0,
+            }}>
+              Contact Us →
+            </a>
+          </div>
         </div>
       </section>
 
@@ -649,7 +737,7 @@ export default function Home() {
           textAlign: "center",
         }}>
           <div style={{ display: "flex", gap: 28, flexWrap: "wrap", justifyContent: "center" }}>
-            {[["Home", "/"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Privacy", "/privacy"], ["Terms", "/terms"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
+            {[["Home", "/"], ["Features", "#features"], ["Compare", "/vs/gohighlevel"], ["Pricing", "#pricing"], ["Blog", "/blog"], ["Privacy", "/privacy"], ["Terms", "/terms"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([label, href]) => (
               <a key={label} href={href} style={{ color: "#555", fontSize: 14, textDecoration: "none", fontWeight: 500 }}>
                 {label}
               </a>
