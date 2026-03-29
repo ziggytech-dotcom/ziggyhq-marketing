@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     title: "ZiggyHQ — CRM for Small Business | $49/mo",
     description: "The GoHighLevel alternative built for small business. Starting at $49/mo.",
   },
+
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
