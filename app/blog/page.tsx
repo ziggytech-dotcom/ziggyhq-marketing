@@ -11,7 +11,9 @@ export default function BlogPage() {
     <main style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "inherit" }}>
       {/* Nav */}
       <nav style={{ borderBottom: "1px solid #1f1f1f", padding: "0 24px", height: "64px", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: "1100px", margin: "0 auto" }}>
-        <a href="/" style={{ color: "#fff", fontWeight: 700, fontSize: "18px", textDecoration: "none" }}>ZiggyHQ</a>
+        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+          <img src="/ziggyhq-wordmark-v3.png" alt="ZiggyHQ" style={{ height: 32, width: "auto" }} />
+        </a>
         <a href="https://app.ziggyhq.com/signup" style={{ background: "#ff006e", color: "#fff", padding: "8px 20px", borderRadius: "6px", fontSize: "14px", fontWeight: 600, textDecoration: "none" }}>Start Free Trial</a>
       </nav>
 

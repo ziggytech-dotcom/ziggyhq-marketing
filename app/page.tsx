@@ -106,8 +106,8 @@ export default function Home() {
           alignItems: "center",
           justifyContent: "space-between",
         }}>
-          <a href="/" style={{ fontSize: 22, fontWeight: 700, color: "#fff", textDecoration: "none", letterSpacing: "-0.5px" }}>
-            Ziggy<span style={{ color: "#ff006e" }}>HQ</span>
+          <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <img src="/ziggyhq-wordmark-v3.png" alt="ZiggyHQ" style={{ height: 32, width: "auto" }} />
           </a>
 
           <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
