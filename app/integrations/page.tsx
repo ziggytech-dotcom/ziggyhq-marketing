@@ -39,6 +39,40 @@ export default function IntegrationsPage() {
         </div>
       </section>
 
+      {/* ZiggyTech Suite integrations */}
+      <section className="py-16 px-4 border-b border-[#2d2d2d]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="px-2.5 py-1 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-[#0ea5e9] text-xs font-medium">Native Suite</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Works with the entire ZiggyTech Suite</h2>
+          <p className="text-[#b3b3b3] mb-8 max-w-2xl">ZiggyHQ connects natively with all 9 other ZiggyTech apps. No API setup. Just toggle on and data flows automatically.</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-3">
+            {[
+              { name: 'ZiggyNexus', color: '#10b981' },
+              { name: 'ZiggyDocs', color: '#7c3aed' },
+              { name: 'ZiggySchedule', color: '#f472b6' },
+              { name: 'ZiggyPayroll', color: '#84cc16' },
+              { name: 'ZiggyPitch', color: '#f97316' },
+              { name: 'ZiggyHR', color: '#8b5cf6' },
+              { name: 'ZiggyReviews', color: '#f59e0b' },
+              { name: 'ZiggyInvoice', color: '#14b8a6' },
+              { name: 'ZiggyIntake', color: '#38bdf8' },
+            ].map((app) => (
+              <div key={app.name} className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl p-4 text-center hover:border-opacity-60 transition-colors" style={{ borderColor: '#2d2d2d' }}>
+                <div className="w-8 h-8 rounded-lg mx-auto mb-2 flex items-center justify-center" style={{ backgroundColor: `${app.color}20` }}>
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: app.color }} />
+                </div>
+                <p className="text-white text-xs font-medium">{app.name}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-sm text-[#b3b3b3]">
+            <a href="/suite" className="text-[#0ea5e9] hover:underline">Learn about the full suite →</a>
+          </p>
+        </div>
+      </section>
+
       {/* Native integrations */}
       <section className="py-16 px-4 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">

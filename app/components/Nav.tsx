@@ -11,6 +11,7 @@ export function MarketingNav() {
     { href: '/features', label: 'Features' },
     { href: '/pricing', label: 'Pricing' },
     { href: '/integrations', label: 'Integrations' },
+    { href: '/suite', label: 'Suite' },
     { href: '/compare/gohighlevel', label: 'vs GoHighLevel' },
     { href: '/compare/hubspot', label: 'vs HubSpot' },
     { href: '/blog', label: 'Blog' },
