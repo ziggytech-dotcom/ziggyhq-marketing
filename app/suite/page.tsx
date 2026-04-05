@@ -110,6 +110,81 @@ export default function SuitePage() {
         </div>
       </section>
 
+      {/* AI Roadmap section */}
+      <section className="py-20 px-4 bg-[#0d0d0d] border-t border-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-[#0ea5e9] text-xs font-medium mb-4">
+              Coming Soon
+            </div>
+            <h2 className="text-3xl font-bold text-white mb-4">AI is coming to every app in the suite</h2>
+            <p className="text-[#b3b3b3] text-lg max-w-2xl mx-auto">
+              We integrate AI where it actually moves the needle — powered by OpenAI, Anthropic, and Bland.ai. 
+              Every feature is tested on our own businesses before it ships to you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+            {[
+              {
+                app: 'ZiggyHQ',
+                color: '#0ea5e9',
+                features: ['AI email sequence writer', 'Lead scoring & deal probability', 'Meeting summary → CRM notes'],
+              },
+              {
+                app: 'ZiggyPitch',
+                color: '#f97316',
+                features: ['AI proposal generator', 'Win/loss analysis', 'Pricing recommendations'],
+              },
+              {
+                app: 'ZiggyReviews',
+                color: '#f59e0b',
+                features: ['AI review response generator', 'Sentiment trend analysis', 'Competitor monitoring summary'],
+              },
+              {
+                app: 'ZiggyDocs',
+                color: '#7c3aed',
+                features: ['AI contract clause generator', 'Document risk flagging', 'Auto-fill from contact data'],
+              },
+              {
+                app: 'ZiggySchedule',
+                color: '#f472b6',
+                features: ['AI scheduling assistant', 'Reminder copy generator', 'No-show prediction'],
+              },
+              {
+                app: 'ZiggyHR',
+                color: '#8b5cf6',
+                features: ['Job description generator', 'Resume screening assist', 'Performance review writer'],
+              },
+            ].map((item) => (
+              <div key={item.app} className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl p-6 hover:border-[#2d2d2d]/80 transition-colors">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
+                  <h3 className="text-white font-semibold">{item.app}</h3>
+                  <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-[#1a1a1a] border border-[#2d2d2d] text-[#b3b3b3]">Coming soon</span>
+                </div>
+                <ul className="space-y-2">
+                  {item.features.map((f, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-[#b3b3b3]">
+                      <span className="text-[#0ea5e9] mt-0.5 flex-shrink-0">→</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center p-6 bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl">
+            <p className="text-white font-medium mb-1">Built different</p>
+            <p className="text-[#b3b3b3] text-sm max-w-xl mx-auto">
+              We don&apos;t ship AI features until we&apos;ve used them ourselves. Every ZiggyTech AI enhancement runs on our own 
+              agency, CRM, and payroll first — so you get the version that actually works.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing CTA */}
       <section className="py-20 px-4 text-center">
         <div className="max-w-2xl mx-auto">

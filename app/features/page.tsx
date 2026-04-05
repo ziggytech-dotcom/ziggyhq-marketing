@@ -219,6 +219,34 @@ export default function FeaturesPage() {
         </div>
       </section>
 
+      {/* AI Roadmap */}
+      <section className="py-20 px-4 bg-[#0d0d0d] border-t border-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-[#0ea5e9] text-xs font-medium mb-6">
+            Coming to ZiggyHQ
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-4">AI enhancements on the roadmap</h2>
+          <p className="text-[#b3b3b3] text-lg mb-10 max-w-2xl mx-auto">
+            We&apos;re adding AI where it actually matters — not as a buzzword, but as tools that save real time.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
+            {[
+              { title: 'AI Email Sequence Writer', desc: 'Generate personalized follow-up sequences for any prospect type in seconds.' },
+              { title: 'Lead Scoring & Deal Probability', desc: 'AI scores every lead based on activity, engagement, and deal signals.' },
+              { title: 'AI Voice Calling (Bland.ai)', desc: 'Already available — deploy AI agents that call and qualify leads 24/7.' },
+              { title: 'Meeting Summary → CRM Notes', desc: 'Auto-transcribe calls and log key points directly to contact records.' },
+            ].map((item, i) => (
+              <div key={i} className={`bg-[#1a1a1a] border rounded-xl p-5 ${i === 2 ? 'border-[#0ea5e9]/30' : 'border-[#2d2d2d]'}`}>
+                {i === 2 && <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-[#22c55e]/10 text-[#22c55e] border border-[#22c55e]/20 mb-2">Live now</span>}
+                {i !== 2 && <span className="inline-block text-xs px-2 py-0.5 rounded-full bg-[#1a1a1a] text-[#b3b3b3] border border-[#2d2d2d] mb-2">Coming soon</span>}
+                <h3 className="text-white font-semibold mb-1">{item.title}</h3>
+                <p className="text-[#b3b3b3] text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-24 px-4 bg-[#111111] border-t border-[#2d2d2d]">
         <div className="max-w-3xl mx-auto text-center">
