@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MarketingNav } from '@/app/components/marketing/Nav'
-import { MarketingFooter } from '@/app/components/marketing/Footer'
+import { MarketingNav } from '@/app/components/Nav'
+import { MarketingFooter } from '@/app/components/Footer'
 
 const features = [
   {

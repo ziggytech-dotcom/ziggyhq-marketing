@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { MarketingNav } from '@/app/components/marketing/Nav'
-import { MarketingFooter } from '@/app/components/marketing/Footer'
+import { MarketingNav } from '@/app/components/Nav'
+import { MarketingFooter } from '@/app/components/Footer'
 
 const comparisonRows = [
   { feature: 'Starting price', ziggy: '$29/mo', ghl: '$97/mo' },

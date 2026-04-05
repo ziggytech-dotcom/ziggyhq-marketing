@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { MarketingNav } from '@/app/components/marketing/Nav'
-import { MarketingFooter } from '@/app/components/marketing/Footer'
+import { MarketingNav } from '@/app/components/Nav'
+import { MarketingFooter } from '@/app/components/Footer'
 
 const faqs = [
   {
