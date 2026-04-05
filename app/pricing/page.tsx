@@ -203,7 +203,7 @@ export default function PricingPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-white text-center mb-12">Full feature comparison</h2>
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-[400px]">
               <thead>
                 <tr className="border-b border-[#2d2d2d]">
                   <th className="text-left py-4 px-4 text-[#b3b3b3] font-medium text-sm">Feature</th>

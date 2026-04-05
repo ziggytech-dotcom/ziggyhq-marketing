@@ -75,12 +75,12 @@ export function MarketingNav() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-[#2d2d2d] py-4 space-y-1">
+          <div className="md:hidden border-t border-[#2d2d2d] py-4 space-y-1 px-2">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-2 text-[#b3b3b3] hover:text-white hover:bg-[#1a1a1a] rounded-lg text-sm font-medium transition-colors"
+                className="block px-4 py-3 text-[#b3b3b3] hover:text-white hover:bg-[#1a1a1a] rounded-lg text-base font-medium transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
