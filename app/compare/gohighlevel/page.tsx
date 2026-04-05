@@ -36,7 +36,7 @@ const switchReasons = [
   {
     icon: '',
     title: 'Built for sales, not marketing agencies',
-    description: 'GoHighLevel markets itself as 'AI-powered' — but their AI requires the $297/mo plan. ZiggyHQ includes Bland.ai AI voice calling at $49/mo. GoHighLevel is designed for marketing agencies reselling to clients. ZiggyHQ is purpose-built for sales teams that need pipeline, dialer, and automation — nothing more, nothing less.',
+    description: "GoHighLevel markets itself as 'AI-powered' — but their AI requires the $297/mo plan. ZiggyHQ includes Bland.ai AI voice calling at $49/mo. GoHighLevel is designed for marketing agencies reselling to clients. ZiggyHQ is purpose-built for sales teams that need pipeline, dialer, and automation — nothing more, nothing less.",
   },
   {
     icon: '',
