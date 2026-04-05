@@ -18,6 +18,7 @@ const comingSoon = [
   { name: 'Outlook', domain: 'outlook.com', description: 'Microsoft email and calendar sync' },
   { name: 'QuickBooks', domain: 'quickbooks.intuit.com', description: 'Sync invoices and revenue data' },
   { name: 'Salesforce', domain: 'salesforce.com', description: 'Bi-directional sync with Salesforce CRM' },
+  { name: 'HubSpot', domain: 'hubspot.com', description: 'Import contacts and sync activity from HubSpot' },
 ]
 
 export default function IntegrationsPage() {
