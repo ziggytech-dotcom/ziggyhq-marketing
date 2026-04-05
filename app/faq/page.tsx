@@ -180,7 +180,7 @@ export default function FAQPage() {
             >
               Contact Support
             </a>
-            <Link href="/signup" className="border border-[#2d2d2d] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#1a1a1a] transition-colors">
+            <Link href="/signup" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] rounded-xl font-semibold text-lg hover:bg-[#0ea5e9]/20 transition-all">
               Start Free Trial
             </Link>
           </div>

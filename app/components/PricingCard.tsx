@@ -67,7 +67,7 @@ export function PricingCard({
         className={`w-full text-center rounded-lg px-6 py-3 font-medium text-sm transition-colors mb-8 ${
           highlighted
             ? 'bg-[#0ea5e9] text-white hover:bg-[#0ea5e9]/90'
-            : 'border border-[#2d2d2d] text-white hover:bg-[#2d2d2d]'
+            : 'bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] hover:bg-[#0ea5e9]/20'
         }`}
       >
         {cta}

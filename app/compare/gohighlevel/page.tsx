@@ -39,7 +39,7 @@ const switchReasons = [
     description: 'GoHighLevel markets itself as 'AI-powered' — but their AI requires the $297/mo plan. ZiggyHQ includes Bland.ai AI voice calling at $49/mo. GoHighLevel is designed for marketing agencies reselling to clients. ZiggyHQ is purpose-built for sales teams that need pipeline, dialer, and automation — nothing more, nothing less.',
   },
   {
-    icon: '🤝',
+    icon: '',
     title: 'Real support when you need it',
     description: 'GHL support can be slow and impersonal at scale. ZiggyHQ Pro includes priority support with a team that actually knows your account.',
   },
@@ -139,9 +139,9 @@ export default function CompareGHLPage() {
                     <td className="py-3 px-4 text-center">
                       {typeof row.ziggy === 'boolean' ? (
                         row.ziggy ? (
-                          <span className="text-[#22c55e] text-2xl font-bold">✓</span>
+                          <span className="text-[#22c55e] text-2xl font-bold"></span>
                         ) : (
-                          <span className="text-[#e11d48] text-2xl font-bold">✗</span>
+                          <span className="text-[#e11d48] text-2xl font-bold"></span>
                         )
                       ) : (
                         <span className="text-white text-sm font-medium">{row.ziggy}</span>
@@ -150,9 +150,9 @@ export default function CompareGHLPage() {
                     <td className="py-3 px-4 text-center">
                       {typeof row.ghl === 'boolean' ? (
                         row.ghl ? (
-                          <span className="text-[#6b7280] text-xl">✓</span>
+                          <span className="text-[#6b7280] text-xl"></span>
                         ) : (
-                          <span className="text-[#e11d48] text-xl">✗</span>
+                          <span className="text-[#e11d48] text-xl"></span>
                         )
                       ) : (
                         <span className="text-[#b3b3b3] text-sm">{row.ghl}</span>
@@ -193,7 +193,7 @@ export default function CompareGHLPage() {
             <Link href="/signup" className="bg-[#0ea5e9] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors">
               Start Free Trial
             </Link>
-            <Link href="/pricing" className="border border-[#2d2d2d] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#1a1a1a] transition-colors">
+            <Link href="/pricing" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] rounded-xl font-semibold text-lg hover:bg-[#0ea5e9]/20 transition-all">
               View Pricing
             </Link>
           </div>

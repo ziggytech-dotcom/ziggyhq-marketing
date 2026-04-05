@@ -131,7 +131,7 @@ export default function PricingPage() {
             </div>
             <Link
               href="https://app.ziggyhq.com/signup"
-              className="block text-center border border-[#2d2d2d] text-white rounded-lg px-6 py-3 font-medium hover:bg-[#2d2d2d] transition-colors mb-8"
+              className="block text-center px-6 py-3 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] rounded-xl font-semibold hover:bg-[#0ea5e9]/20 transition-all mb-8"
             >
               Start Free Trial
             </Link>
@@ -315,7 +315,8 @@ export default function PricingPage() {
             <a href="https://app.ziggyhq.com/signup" className="inline-flex items-center gap-2 px-6 py-3 bg-[#0ea5e9] text-white rounded-lg font-medium hover:bg-[#0ea5e9]/90 transition-colors">
               Start Free Trial — 14 days, no credit card
             </a>
-            <a href="/compare/gohighlevel" className="text-[#b3b3b3] hover:text-white text-sm underline transition-colors">Full GoHighLevel comparison →</a>
+            <a href="/compare/gohighlevel" className="inline-flex items-center gap-1 px-4 py-2 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] rounded-lg text-sm font-medium hover:bg-[#0ea5e9]/20 transition-all">GoHighLevel comparison</a>
+            <a href="/compare/hubspot" className="inline-flex items-center gap-1 px-4 py-2 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] rounded-lg text-sm font-medium hover:bg-[#0ea5e9]/20 transition-all">HubSpot comparison</a>
           </div>
         </div>
       </section>

@@ -89,7 +89,7 @@ export function MarketingNav() {
             <div className="border-t border-[#2d2d2d] pt-4 mt-4 flex flex-col gap-2 px-4">
               <Link
                 href="https://app.ziggyhq.com/login"
-                className="block text-center border border-[#2d2d2d] text-white rounded-lg px-5 py-2 text-sm font-medium hover:bg-[#1a1a1a] transition-colors"
+                className="block text-center px-5 py-2 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] rounded-lg text-sm font-medium hover:bg-[#0ea5e9]/20 transition-all"
                 onClick={() => setMobileOpen(false)}
               >
                 Sign In
