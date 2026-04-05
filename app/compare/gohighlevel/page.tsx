@@ -36,7 +36,7 @@ const switchReasons = [
   {
     icon: '',
     title: 'Built for sales, not marketing agencies',
-    description: 'GoHighLevel is designed for marketing agencies reselling to clients. ZiggyHQ is purpose-built for sales teams that need pipeline, dialer, and automation — nothing more, nothing less.',
+    description: 'GoHighLevel markets itself as 'AI-powered' — but their AI requires the $297/mo plan. ZiggyHQ includes Bland.ai AI voice calling at $49/mo. GoHighLevel is designed for marketing agencies reselling to clients. ZiggyHQ is purpose-built for sales teams that need pipeline, dialer, and automation — nothing more, nothing less.',
   },
   {
     icon: '🤝',
@@ -76,7 +76,7 @@ export default function CompareGHLPage() {
           <h2 className="text-2xl font-bold text-white mb-6">The verdict</h2>
           <div className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl p-6">
             <p className="text-[#b3b3b3] leading-relaxed">
-              GoHighLevel is a powerhouse for marketing agencies managing dozens of client accounts — it has website builders, funnel tools, reputation management, and more. But that complexity comes at a cost: a steep learning curve, a $97–$297/mo price tag, and an interface that often overwhelms sales reps who just want to work their pipeline.
+              GoHighLevel is adding AI features fast — but at $97-297/mo, you're paying for agency tools you don't need. ZiggyHQ gives sales teams Bland.ai AI calling, power dialing, and a full CRM at $49/mo. GoHighLevel is a powerhouse for marketing agencies managing dozens of client accounts — it has website builders, funnel tools, reputation management, and more. But that complexity comes at a cost: a steep learning curve, a $97–$297/mo price tag, and an interface that often overwhelms sales reps who just want to work their pipeline.
             </p>
             <p className="text-[#b3b3b3] leading-relaxed mt-4">
               <span className="text-white font-medium">ZiggyHQ is the better choice if</span> you run a sales team (not a marketing agency), want to get up and running in under an hour, and don&apos;t want to pay for features you&apos;ll never use. At $29/mo, you get the CRM, pipeline, email sequences, power dialer, and AI calling that matter most.
