@@ -11,8 +11,8 @@ const comparisonRows = [
   { feature: 'Email sequences', ziggy: true, ghl: true },
   { feature: 'Contact management', ziggy: true, ghl: true },
   { feature: 'Forms & landing pages', ziggy: true, ghl: true },
+  { feature: 'AI voice calling (Bland.ai)', ziggy: true, ghl: false },
   { feature: 'Power dialer', ziggy: true, ghl: true },
-  { feature: 'AI voice calling', ziggy: true, ghl: true },
   { feature: 'Automation builder', ziggy: true, ghl: true },
   { feature: 'White label', ziggy: true, ghl: 'Pro plan only' },
   { feature: 'Simple, clean UI', ziggy: true, ghl: false },
@@ -127,7 +127,9 @@ export default function CompareGHLPage() {
               <thead>
                 <tr className="border-b border-[#2d2d2d]">
                   <th className="text-left py-4 px-4 text-[#b3b3b3] font-medium text-sm">Feature</th>
-                  <th className="text-center py-4 px-4 text-[#0ea5e9] font-semibold">ZiggyHQ</th>
+                  <th className="text-center py-4 px-4 text-[#0ea5e9] font-semibold">
+                    <div className="bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 rounded-t-lg px-4 py-2">ZiggyHQ</div>
+                  </th>
                   <th className="text-center py-4 px-4 text-[#b3b3b3] font-semibold">GoHighLevel</th>
                 </tr>
               </thead>
@@ -138,13 +140,9 @@ export default function CompareGHLPage() {
                     <td className="py-3 px-4 text-center">
                       {typeof row.ziggy === 'boolean' ? (
                         row.ziggy ? (
-                          <svg className="w-5 h-5 text-[#0ea5e9] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
+                          <span className="text-[#22c55e] text-2xl font-bold">✓</span>
                         ) : (
-                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
+                          <span className="text-[#e11d48] text-2xl font-bold">✗</span>
                         )
                       ) : (
                         <span className="text-white text-sm font-medium">{row.ziggy}</span>
@@ -153,13 +151,9 @@ export default function CompareGHLPage() {
                     <td className="py-3 px-4 text-center">
                       {typeof row.ghl === 'boolean' ? (
                         row.ghl ? (
-                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
+                          <span className="text-[#6b7280] text-xl">✓</span>
                         ) : (
-                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
+                          <span className="text-[#e11d48] text-xl">✗</span>
                         )
                       ) : (
                         <span className="text-[#b3b3b3] text-sm">{row.ghl}</span>

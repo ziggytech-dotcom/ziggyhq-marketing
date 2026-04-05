@@ -11,8 +11,8 @@ const comparisonRows = [
   { feature: 'Email sequences', ziggy: true, hs: 'Sales Hub only ($90+/mo)' },
   { feature: 'Contact management', ziggy: true, hs: true },
   { feature: 'Forms & lead capture', ziggy: true, hs: true },
+  { feature: 'AI voice calling (Bland.ai)', ziggy: true, hs: false },
   { feature: 'Power dialer', ziggy: true, hs: 'Enterprise only' },
-  { feature: 'AI voice calling', ziggy: true, hs: false },
   { feature: 'Automation', ziggy: true, hs: 'Paid plans only' },
   { feature: 'White label', ziggy: true, hs: false },
   { feature: 'No seat limits surprise fees', ziggy: true, hs: false },
@@ -80,7 +80,7 @@ export default function CompareHubSpotPage() {
               HubSpot is the gold standard for enterprise marketing and CRM — if you have a budget to match. Their platform is deep, their ecosystem is massive, and for large organizations, the investment can make sense. But for SMBs and growing sales teams? HubSpot&apos;s free tier is intentionally limiting, and the paid tiers escalate fast with seat fees, hub add-ons, and contact tier pricing.
             </p>
             <p className="text-[#b3b3b3] leading-relaxed mt-4">
-              <span className="text-white font-medium">ZiggyHQ is the better choice if</span> you want the core sales features that actually drive revenue — pipeline, sequences, dialer, AI calling — without paying for a CMS, blog, ticketing system, and enterprise marketing suite you don&apos;t need. Get started in under an hour for $29/mo.
+              <span className="text-white font-medium">ZiggyHQ is the better choice if</span> you want the core sales features that actually drive revenue — pipeline, sequences, and dialer — without paying for a CMS, blog, ticketing system, and enterprise marketing suite you don&apos;t need. Get started in under an hour for $29/mo.
             </p>
           </div>
         </div>
@@ -137,7 +137,9 @@ export default function CompareHubSpotPage() {
               <thead>
                 <tr className="border-b border-[#2d2d2d]">
                   <th className="text-left py-4 px-4 text-[#b3b3b3] font-medium text-sm">Feature</th>
-                  <th className="text-center py-4 px-4 text-[#0ea5e9] font-semibold">ZiggyHQ</th>
+                  <th className="text-center py-4 px-4 text-[#0ea5e9] font-semibold">
+                    <div className="bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 rounded-t-lg px-4 py-2">ZiggyHQ</div>
+                  </th>
                   <th className="text-center py-4 px-4 text-[#b3b3b3] font-semibold">HubSpot</th>
                 </tr>
               </thead>
@@ -148,13 +150,9 @@ export default function CompareHubSpotPage() {
                     <td className="py-3 px-4 text-center">
                       {typeof row.ziggy === 'boolean' ? (
                         row.ziggy ? (
-                          <svg className="w-5 h-5 text-[#0ea5e9] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
+                          <span className="text-[#22c55e] text-2xl font-bold">✓</span>
                         ) : (
-                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
+                          <span className="text-[#e11d48] text-2xl font-bold">✗</span>
                         )
                       ) : (
                         <span className="text-white text-sm font-medium">{row.ziggy}</span>
@@ -163,13 +161,9 @@ export default function CompareHubSpotPage() {
                     <td className="py-3 px-4 text-center">
                       {typeof row.hs === 'boolean' ? (
                         row.hs ? (
-                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
+                          <span className="text-[#6b7280] text-xl">✓</span>
                         ) : (
-                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
+                          <span className="text-[#e11d48] text-xl">✗</span>
                         )
                       ) : (
                         <span className="text-[#b3b3b3] text-sm">{row.hs}</span>
