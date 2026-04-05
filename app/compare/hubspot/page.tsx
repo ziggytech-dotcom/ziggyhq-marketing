@@ -12,6 +12,8 @@ const comparisonRows = [
   { feature: 'Contact management', ziggy: true, hs: true },
   { feature: 'Forms & lead capture', ziggy: true, hs: true },
   { feature: 'Power dialer', ziggy: true, hs: 'Enterprise only' },
+  { feature: 'AI voice calling (Bland.ai)', ziggy: true, hs: false },
+  { feature: 'AI agents', ziggy: 'Bland.ai — $49/mo', hs: 'Breeze — $450+/mo' },
   { feature: 'Automation', ziggy: true, hs: 'Paid plans only' },
   { feature: 'White label', ziggy: true, hs: false },
   { feature: 'No seat limits surprise fees', ziggy: true, hs: false },
