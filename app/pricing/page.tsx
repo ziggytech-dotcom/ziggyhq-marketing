@@ -254,6 +254,73 @@ export default function PricingPage() {
         </div>
       </section>
 
+
+      {/* Competitor Comparison Table */}
+      <section className="py-20 px-4 border-t border-[#2d2d2d]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">How we compare</h2>
+            <p className="text-[#b3b3b3] text-lg">See why businesses switch to ZiggyHQ</p>
+          </div>
+          <div className="overflow-x-auto rounded-xl border border-[#2d2d2d]">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-[#2d2d2d] bg-[#111111]">
+                  <th className="text-left py-4 px-6 text-[#b3b3b3] font-medium w-1/4">Feature</th>
+                  <th className="py-4 px-6 text-center w-1/4">
+                    <div className="text-[#0ea5e9] font-bold text-lg">ZiggyHQ</div>
+                    <div className="text-white font-bold text-sm">$49/mo</div>
+                  </th>
+                  <th className="py-4 px-6 text-center w-1/4">
+                    <div className="text-[#b3b3b3] font-semibold">GoHighLevel</div>
+                    <div className="text-[#b3b3b3] text-sm">$97–$297/mo</div>
+                  </th>
+                  <th className="py-4 px-6 text-center w-1/4">
+                    <div className="text-[#b3b3b3] font-semibold">HubSpot</div>
+                    <div className="text-[#b3b3b3] text-sm">$45–$450/mo</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#2d2d2d]">
+                {[
+                  { feature: 'Starting price', ziggy: '$29/mo', ghl: '$97/mo', hubspot: '$45/mo' },
+                  { feature: 'Seats included', ziggy: '5 seats at $49', ghl: '1 seat', hubspot: '2 seats' },
+                  { feature: 'Visual pipeline', ziggy: true, ghl: true, hubspot: true },
+                  { feature: 'Email sequences', ziggy: true, ghl: true, hubspot: 'Paid add-on' },
+                  { feature: 'Power dialer', ziggy: true, ghl: true, hubspot: false },
+                  { feature: 'AI calling', ziggy: true, ghl: false, hubspot: false },
+                  { feature: '2FA security', ziggy: true, ghl: false, hubspot: 'Enterprise only' },
+                  { feature: 'White label', ziggy: true, ghl: true, hubspot: false },
+                  { feature: 'Automation engine', ziggy: true, ghl: true, hubspot: 'Paid add-on' },
+                  { feature: 'Free trial', ziggy: '14 days', ghl: '14 days', hubspot: 'Limited free tier' },
+                ].map((row) => (
+                  <tr key={row.feature} className="hover:bg-[#1a1a1a]/50 transition-colors">
+                    <td className="py-4 px-6 text-[#b3b3b3] text-sm">{row.feature}</td>
+                    {([row.ziggy, row.ghl, row.hubspot] as (boolean | string)[]).map((val, i) => (
+                      <td key={i} className="py-4 px-6 text-center">
+                        {val === true ? (
+                          <span className="text-[#22c55e] text-xl">✓</span>
+                        ) : val === false ? (
+                          <span className="text-[#e11d48] text-xl">✗</span>
+                        ) : (
+                          <span className={`text-sm ${i === 0 ? 'text-white font-medium' : 'text-[#b3b3b3]'}`}>{val as string}</span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="text-center mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://app.ziggyhq.com/signup" className="inline-flex items-center gap-2 px-6 py-3 bg-[#0ea5e9] text-white rounded-lg font-medium hover:bg-[#0ea5e9]/90 transition-colors">
+              Start Free Trial — 14 days, no credit card
+            </a>
+            <a href="/compare/gohighlevel" className="text-[#b3b3b3] hover:text-white text-sm underline transition-colors">Full GoHighLevel comparison →</a>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing FAQ */}
       <section className="py-24 px-4 bg-[#0a0a0a]">
         <div className="max-w-3xl mx-auto">
