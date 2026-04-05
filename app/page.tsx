@@ -106,6 +106,9 @@ export default function HomePage() {
       <section className="relative overflow-hidden pt-20 pb-32 px-4">
         {/* Background glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0ea5e9]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0ea5e9]/8 rounded-full blur-3xl" />
+        </div>
 
         <div className="max-w-7xl mx-auto text-center relative">
           <div className="inline-flex items-center gap-2 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 rounded-full px-4 py-1.5 text-sm text-[#0ea5e9] mb-8">
@@ -119,7 +122,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-xl text-[#b3b3b3] max-w-2xl mx-auto mb-10 leading-relaxed">
-            Pipeline management, email sequences, power dialing, and AI calling — all in one place. Starting at $29/mo.
+            Pipeline management, email sequences, power dialing, and team collaboration — all in one place. Starting at $29/mo.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -173,7 +176,7 @@ export default function HomePage() {
       </section>
 
       {/* Features overview */}
-      <section className="py-24 px-4 bg-[#0a0a0a]">
+      <section className="py-20 lg:py-24 px-4 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
@@ -187,7 +190,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature) => (
-              <div key={feature.title} className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl p-6 hover:border-[#0ea5e9]/50 transition-colors">
+              <div key={feature.title} className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl p-6 lg:p-8 hover:border-[#0ea5e9]/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)] transition-all">
                 <div className="w-10 h-10 bg-[#0ea5e9]/10 rounded-lg flex items-center justify-center text-[#0ea5e9] mb-4">
                   {feature.icon}
                 </div>
@@ -206,7 +209,7 @@ export default function HomePage() {
       </section>
 
       {/* Pricing teaser */}
-      <section className="py-24 px-4 bg-[#111111]">
+      <section className="py-20 lg:py-24 px-4 bg-gradient-to-b from-[#0a0a0a] to-[#0d1117]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
@@ -298,7 +301,8 @@ export default function HomePage() {
 
       {/* Final CTA */}
       <section className="py-24 px-4 bg-[#111111]">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center relative">
+          <div className="absolute inset-0 bg-[#0ea5e9]/5 rounded-2xl blur-xl pointer-events-none" />
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             Ready to close more deals?
           </h2>

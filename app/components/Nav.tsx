@@ -27,12 +27,12 @@ export function MarketingNav() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[#b3b3b3] hover:text-white text-sm font-medium transition-colors"
+                className="text-[#b3b3b3] hover:text-white text-xs font-medium transition-colors"
               >
                 {link.label}
               </Link>
