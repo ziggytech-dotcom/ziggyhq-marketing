@@ -40,13 +40,13 @@ export function MarketingNav() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href="/login"
+              href="https://app.ziggyhq.com/login"
               className="text-[#b3b3b3] hover:text-white text-sm font-medium transition-colors px-4 py-2"
             >
               Sign In
             </Link>
             <Link
-              href="/signup"
+              href="https://app.ziggyhq.com/signup"
               className="bg-[#0ea5e9] text-white rounded-lg px-5 py-2 text-sm font-medium hover:bg-[#0ea5e9]/90 transition-colors"
             >
               Start Free Trial
@@ -86,14 +86,14 @@ export function MarketingNav() {
             ))}
             <div className="border-t border-[#2d2d2d] pt-4 mt-4 flex flex-col gap-2 px-4">
               <Link
-                href="/login"
+                href="https://app.ziggyhq.com/login"
                 className="block text-center border border-[#2d2d2d] text-white rounded-lg px-5 py-2 text-sm font-medium hover:bg-[#1a1a1a] transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 Sign In
               </Link>
               <Link
-                href="/signup"
+                href="https://app.ziggyhq.com/signup"
                 className="block text-center bg-[#0ea5e9] text-white rounded-lg px-5 py-2 text-sm font-medium hover:bg-[#0ea5e9]/90 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >

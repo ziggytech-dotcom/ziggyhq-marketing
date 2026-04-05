@@ -131,7 +131,7 @@ export default function PricingPage() {
               <p className="text-[#b3b3b3] text-xs mt-1">+$12/seat/mo for additional seats</p>
             </div>
             <Link
-              href="/signup"
+              href="https://app.ziggyhq.com/signup"
               className="block text-center border border-[#2d2d2d] text-white rounded-lg px-6 py-3 font-medium hover:bg-[#2d2d2d] transition-colors mb-8"
             >
               Start Free Trial
@@ -165,7 +165,7 @@ export default function PricingPage() {
               <p className="text-[#b3b3b3] text-xs mt-1">+$10/seat/mo for additional seats</p>
             </div>
             <Link
-              href="/signup"
+              href="https://app.ziggyhq.com/signup"
               className="block text-center bg-[#0ea5e9] text-white rounded-lg px-6 py-3 font-medium hover:bg-[#0ea5e9]/90 transition-colors mb-8"
             >
               Start Free Trial
@@ -274,7 +274,7 @@ export default function PricingPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">Start free. Scale when you&apos;re ready.</h2>
           <p className="text-[#b3b3b3] text-lg mb-8">14-day trial, full Pro access, no credit card.</p>
-          <Link href="/signup" className="bg-[#0ea5e9] text-white rounded-lg px-10 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors inline-block">
+          <Link href="https://app.ziggyhq.com/signup" className="bg-[#0ea5e9] text-white rounded-lg px-10 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors inline-block">
             Start Free Trial
           </Link>
         </div>

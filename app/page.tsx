@@ -124,7 +124,7 @@ export default function HomePage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link
-              href="/signup"
+              href="https://app.ziggyhq.com/signup"
               className="bg-[#0ea5e9] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors"
             >
               Start Free Trial
@@ -227,7 +227,7 @@ export default function HomePage() {
                 <span className="text-[#b3b3b3] text-sm">/mo</span>
                 <p className="text-[#b3b3b3] text-xs mt-1">1 seat included · +$12/seat</p>
               </div>
-              <Link href="/signup" className="block text-center border border-[#2d2d2d] text-white rounded-lg px-6 py-3 font-medium text-sm hover:bg-[#2d2d2d] transition-colors mb-6">
+              <Link href="https://app.ziggyhq.com/signup" className="block text-center border border-[#2d2d2d] text-white rounded-lg px-6 py-3 font-medium text-sm hover:bg-[#2d2d2d] transition-colors mb-6">
                 Start Free Trial
               </Link>
               <ul className="space-y-2 text-sm text-[#b3b3b3]">
@@ -251,7 +251,7 @@ export default function HomePage() {
                 <span className="text-[#b3b3b3] text-sm">/mo</span>
                 <p className="text-[#b3b3b3] text-xs mt-1">5 seats included · +$10/seat</p>
               </div>
-              <Link href="/signup" className="block text-center bg-[#0ea5e9] text-white rounded-lg px-6 py-3 font-medium text-sm hover:bg-[#0ea5e9]/90 transition-colors mb-6">
+              <Link href="https://app.ziggyhq.com/signup" className="block text-center bg-[#0ea5e9] text-white rounded-lg px-6 py-3 font-medium text-sm hover:bg-[#0ea5e9]/90 transition-colors mb-6">
                 Start Free Trial
               </Link>
               <ul className="space-y-2 text-sm text-[#b3b3b3]">
@@ -307,7 +307,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/signup"
+              href="https://app.ziggyhq.com/signup"
               className="bg-[#0ea5e9] text-white rounded-lg px-10 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors"
             >
               Start Free Trial

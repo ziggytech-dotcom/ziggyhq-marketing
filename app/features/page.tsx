@@ -166,7 +166,7 @@ export default function FeaturesPage() {
             ZiggyHQ packs the power of GoHighLevel and HubSpot into a leaner, faster, more affordable package. Here&apos;s what you get.
           </p>
           <Link
-            href="/signup"
+            href="https://app.ziggyhq.com/signup"
             className="inline-block bg-[#0ea5e9] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors"
           >
             Start Free Trial — No Credit Card
@@ -229,7 +229,7 @@ export default function FeaturesPage() {
             Full Pro access. No credit card. Cancel anytime.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/signup" className="bg-[#0ea5e9] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors">
+            <Link href="https://app.ziggyhq.com/signup" className="bg-[#0ea5e9] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors">
               Start Free Trial
             </Link>
             <Link href="/pricing" className="border border-[#2d2d2d] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#1a1a1a] transition-colors">
