@@ -11,7 +11,6 @@ const comparisonRows = [
   { feature: 'Email sequences', ziggy: true, hs: 'Sales Hub only ($90+/mo)' },
   { feature: 'Contact management', ziggy: true, hs: true },
   { feature: 'Forms & lead capture', ziggy: true, hs: true },
-  { feature: 'AI voice calling (Bland.ai)', ziggy: true, hs: false },
   { feature: 'Power dialer', ziggy: true, hs: 'Enterprise only' },
   { feature: 'Automation', ziggy: true, hs: 'Paid plans only' },
   { feature: 'White label', ziggy: true, hs: false },
@@ -36,8 +35,8 @@ const switchReasons = [
   },
   {
     icon: '',
-    title: 'Power dialer & AI calling on day one',
-    description: 'HubSpot\'s calling features are buried in expensive Enterprise plans. ZiggyHQ includes a Twilio power dialer and Bland.ai AI calling in the Pro plan at $49/mo.',
+    title: 'Power dialer on day one',
+    description: 'HubSpot\'s calling features are buried in expensive Enterprise plans. ZiggyHQ includes a Twilio power dialer in the Pro plan at $49/mo — no enterprise upgrade required.',
   },
   {
     icon: '',

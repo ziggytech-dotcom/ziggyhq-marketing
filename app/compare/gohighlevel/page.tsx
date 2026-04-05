@@ -11,7 +11,6 @@ const comparisonRows = [
   { feature: 'Email sequences', ziggy: true, ghl: true },
   { feature: 'Contact management', ziggy: true, ghl: true },
   { feature: 'Forms & landing pages', ziggy: true, ghl: true },
-  { feature: 'AI voice calling (Bland.ai)', ziggy: true, ghl: false },
   { feature: 'Power dialer', ziggy: true, ghl: true },
   { feature: 'Automation builder', ziggy: true, ghl: true },
   { feature: 'White label', ziggy: true, ghl: 'Pro plan only' },
