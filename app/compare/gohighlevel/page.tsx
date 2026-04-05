@@ -25,17 +25,17 @@ const comparisonRows = [
 
 const switchReasons = [
   {
-    icon: '💸',
+    icon: '',
     title: 'Save $68–$248/mo',
     description: 'GoHighLevel starts at $97/mo ($297/mo for agencies). ZiggyHQ starts at $29/mo. Same core CRM features, fraction of the cost.',
   },
   {
-    icon: '⚡',
+    icon: '',
     title: 'Actually fast to set up',
     description: 'GHL is powerful but notorious for its steep learning curve. ZiggyHQ is built for sales teams — onboard in under an hour, not weeks.',
   },
   {
-    icon: '🎯',
+    icon: '',
     title: 'Built for sales, not marketing agencies',
     description: 'GoHighLevel is designed for marketing agencies reselling to clients. ZiggyHQ is purpose-built for sales teams that need pipeline, dialer, and automation — nothing more, nothing less.',
   },

@@ -25,7 +25,7 @@ const comparisonRows = [
 
 const switchReasons = [
   {
-    icon: '💸',
+    icon: '',
     title: 'HubSpot\'s free tier is a trap',
     description: 'HubSpot lures you in with a free plan, then charges $90–$800+/mo the moment you need real features like sequences, reporting, or more than 2 seats. ZiggyHQ is transparent from day one — $29/mo for the real thing.',
   },
@@ -35,12 +35,12 @@ const switchReasons = [
     description: 'HubSpot\'s pricing is notoriously complex — per-seat upgrades, add-on hubs, contact tier pricing. ZiggyHQ bills are simple: flat monthly rate plus seats. That\'s it.',
   },
   {
-    icon: '⚡',
+    icon: '',
     title: 'Power dialer & AI calling on day one',
     description: 'HubSpot\'s calling features are buried in expensive Enterprise plans. ZiggyHQ includes a Twilio power dialer and Bland.ai AI calling in the Pro plan at $49/mo.',
   },
   {
-    icon: '🚀',
+    icon: '',
     title: 'Faster, leaner, purpose-built',
     description: 'HubSpot is an enterprise suite trying to be everything to everyone. ZiggyHQ is a focused sales CRM. Less noise, faster setup, better results for SMB sales teams.',
   },

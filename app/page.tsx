@@ -233,7 +233,7 @@ export default function HomePage() {
               <ul className="space-y-2 text-sm text-[#b3b3b3]">
                 {['Visual pipeline', 'Contact management', 'Email sequences', 'Forms & lead capture', 'Basic reporting'].map(f => (
                   <li key={f} className="flex items-center gap-2">
-                    <span className="text-[#0ea5e9]">✓</span> {f}
+                    <span className="text-[#0ea5e9]"></span> {f}
                   </li>
                 ))}
               </ul>
@@ -257,7 +257,7 @@ export default function HomePage() {
               <ul className="space-y-2 text-sm text-[#b3b3b3]">
                 {['Everything in Starter', 'Power dialer (Twilio)', 'AI calling (Bland.ai)', 'Automation engine', 'White label', 'Priority support'].map(f => (
                   <li key={f} className="flex items-center gap-2">
-                    <span className="text-[#0ea5e9]">✓</span> {f}
+                    <span className="text-[#0ea5e9]"></span> {f}
                   </li>
                 ))}
               </ul>
