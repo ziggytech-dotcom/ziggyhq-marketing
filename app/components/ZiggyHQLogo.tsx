@@ -1,8 +1,15 @@
+import Image from 'next/image'
+
 export function ZiggyHQLogo({ className = '' }: { className?: string }) {
   return (
-    <span className={`font-bold tracking-tight text-2xl ${className}`}>
-      <span style={{ color: '#ff1744' }}>Ziggy</span>
-      <span style={{ color: '#0ea5e9' }}>HQ</span>
-    </span>
+    <Image
+      src="/press-assets/ziggyhq-wordmark-dark.png"
+      alt="ZiggyHQ"
+      width={140}
+      height={40}
+      className={className}
+      style={{ objectFit: 'contain' }}
+      priority
+    />
   )
 }

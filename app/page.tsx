@@ -68,7 +68,7 @@ const faqs = [
   },
   {
     q: 'What\'s the difference between Starter and Pro?',
-    a: 'Starter ($29/mo) includes 1 seat and core CRM features — pipeline, contacts, email sequences. Pro ($49/mo) includes 5 seats, AI calling, white label, automation engine, and priority support.',
+    a: 'Starter ($29/mo) includes 1 seat and core CRM features — pipeline, contacts, email sequences. Pro ($49/mo) includes 5 seats, white label, automation engine, and priority support.',
   },
   {
     q: 'Can I add more seats to my plan?',

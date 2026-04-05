@@ -20,7 +20,6 @@ const starterFeatures = [
 const proFeatures = [
   'Everything in Starter',
   'Power dialer (Twilio)',
-  'AI calling agent (Bland.ai)',
   'Advanced automation engine',
   'Action plans & follow-up rules',
   'White label branding',
@@ -95,7 +94,7 @@ export default function PricingPage() {
           Simple, transparent{' '}
           <span className="text-[#0ea5e9]">pricing</span>
         </h1>
-        <p className="text-xl text-[#b3b3b3] max-w-xl mx-auto mb-10">
+        <p className="text-xl text-[#b3b3b3] max-w-xl text-center mx-auto mx-auto mb-10">
           No hidden fees. No long-term contracts. Start free for 14 days.
         </p>
 
@@ -106,7 +105,7 @@ export default function PricingPage() {
             onClick={() => setIsAnnual(!isAnnual)}
             className={`relative w-12 h-6 rounded-full transition-colors ${isAnnual ? 'bg-[#0ea5e9]' : 'bg-[#2d2d2d]'}`}
           >
-            <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${isAnnual ? 'translate-x-7' : 'translate-x-1'}`} />
+            <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${isAnnual ? 'translate-x-6' : 'translate-x-1'}`} />
           </button>
           <span className={`text-sm font-medium ${isAnnual ? 'text-white' : 'text-[#b3b3b3]'}`}>
             Annual <span className="text-[#0ea5e9] text-xs ml-1">Save 10%</span>
@@ -187,7 +186,7 @@ export default function PricingPage() {
         <div className="max-w-4xl mx-auto mt-8">
           <div className="bg-gradient-to-r from-[#ff1744]/10 to-[#0ea5e9]/10 border border-[#2d2d2d] rounded-2xl p-6 text-center">
             <h3 className="text-white font-bold text-lg mb-2">
-              🚀 Using multiple ZiggyTech apps?
+              Using multiple ZiggyTech apps?
             </h3>
             <p className="text-[#b3b3b3] text-sm mb-4">
               Get all 10 apps in the ZiggyTech Business Suite for <span className="text-white font-semibold">$179/mo</span> — saving you hundreds compared to individual pricing.
