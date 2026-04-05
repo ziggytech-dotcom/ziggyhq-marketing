@@ -1,106 +1,209 @@
-import type { Metadata } from "next"
+import Link from 'next/link'
+import { MarketingNav } from '@/app/components/marketing/Nav'
+import { MarketingFooter } from '@/app/components/marketing/Footer'
 
-export const metadata: Metadata = {
-  title: "Changelog — ZiggyHQ",
-  description: "What's new in ZiggyHQ. Feature updates, improvements, and release notes.",
+const changelog = [
+  {
+    date: 'April 2026',
+    version: 'v1.2',
+    highlight: true,
+    entries: [
+      {
+        type: 'feature',
+        title: 'Team Management',
+        description: 'Full team management with role-based access control, round-robin lead assignment, and team performance dashboards.',
+      },
+      {
+        type: 'feature',
+        title: 'Two-Factor Authentication (TOTP)',
+        description: 'Secure your account with time-based one-time passwords. Supports Google Authenticator, Authy, and 1Password.',
+      },
+      {
+        type: 'feature',
+        title: 'Google & Apple OAuth',
+        description: 'Sign in or sign up using your Google or Apple account. One-click authentication across all devices.',
+      },
+      {
+        type: 'feature',
+        title: 'White Label Branding',
+        description: 'Pro plan users can now remove ZiggyHQ branding and replace it with their own logo and company name.',
+      },
+      {
+        type: 'feature',
+        title: 'Automation Engine',
+        description: 'Build multi-step automations triggered by contact actions, deal stage changes, form submissions, and more. Set delays, conditions, and actions.',
+      },
+      {
+        type: 'improvement',
+        title: 'Action Plans',
+        description: 'Action plans now support recurring tasks, template sharing, and due date calculations relative to deal stage.',
+      },
+      {
+        type: 'improvement',
+        title: 'Smart Lists v2',
+        description: 'Smart lists now support nested conditions, real-time count updates, and export to CSV.',
+      },
+      {
+        type: 'fix',
+        title: 'Email sequence open tracking reliability',
+        description: 'Resolved an issue where open tracking pixels were occasionally blocked by email clients. Improved fallback detection.',
+      },
+    ],
+  },
+  {
+    date: 'March 2026',
+    version: 'v1.0',
+    highlight: false,
+    entries: [
+      {
+        type: 'launch',
+        title: '🚀 ZiggyHQ Launched',
+        description: 'ZiggyHQ is live. The CRM built for modern sales teams — visual pipeline, email sequences, contact management, and more.',
+      },
+      {
+        type: 'feature',
+        title: 'Power Dialer',
+        description: 'Twilio-powered click-to-call with pre-recorded voicemail drop, call recording, live transcription, and automatic call logging.',
+      },
+      {
+        type: 'feature',
+        title: 'AI Calling (Bland.ai)',
+        description: 'Deploy AI voice agents that qualify inbound leads and run outbound campaigns 24/7. Human-sounding, fully customizable.',
+      },
+      {
+        type: 'feature',
+        title: 'Email Sequences',
+        description: 'Build multi-step email drip campaigns with open/click tracking, personalization tokens, and auto-pause on reply.',
+      },
+      {
+        type: 'feature',
+        title: 'Pipeline Management',
+        description: 'Drag-and-drop deal tracking across custom pipeline stages. Deal value, close date, ownership, and activity timeline.',
+      },
+      {
+        type: 'feature',
+        title: 'Contact Management',
+        description: 'Rich contact profiles with full activity history, custom fields, tags, and company associations.',
+      },
+      {
+        type: 'feature',
+        title: 'Forms & Lead Capture',
+        description: 'Embeddable lead capture forms that auto-create contacts and trigger sequences on submission.',
+      },
+      {
+        type: 'feature',
+        title: 'Reporting Dashboard',
+        description: 'Real-time pipeline health, deal velocity, and team activity metrics. Revenue forecasting included.',
+      },
+      {
+        type: 'feature',
+        title: 'Gmail Integration',
+        description: 'Send emails from your own Gmail address, sync your inbox, and track opens and clicks natively.',
+      },
+    ],
+  },
+]
+
+const typeConfig: Record<string, { label: string; color: string; bg: string }> = {
+  launch: { label: 'Launch', color: 'text-[#ff1744]', bg: 'bg-[#ff1744]/10 border-[#ff1744]/30' },
+  feature: { label: 'New', color: 'text-[#0ea5e9]', bg: 'bg-[#0ea5e9]/10 border-[#0ea5e9]/30' },
+  improvement: { label: 'Improved', color: 'text-[#22c55e]', bg: 'bg-[#22c55e]/10 border-[#22c55e]/30' },
+  fix: { label: 'Fixed', color: 'text-[#f59e0b]', bg: 'bg-[#f59e0b]/10 border-[#f59e0b]/30' },
 }
-
-const ACCENT = "#ff006e"
 
 export default function ChangelogPage() {
   return (
-    <>
-            <style>{`@media(max-width:768px){.nav-links{display:none!important}}`}</style>
-      <nav style={{
-        position: "sticky", top: 0, zIndex: 100,
-        background: "rgba(10,10,10,0.92)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #1f1f1f", padding: "0 24px",
-      }}>
-        <div style={{ maxWidth: 1120, margin: "0 auto", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="/" style={{ textDecoration: "none" }}><img src="/ziggyhq-wordmark-v3.png" alt="ZiggyHQ" style={{ height: 32, width: "auto" }} /></a>
-          <div className="nav-links" style={{ display: "flex", gap: 28 }}>
-            {[["Features", "/features"], ["Pricing", "/#pricing"], ["Contact", "/contact"], ["Blog", "/blog"], ["Sign In", "https://app.ziggyhq.com/login"]].map(([l, h]) => (
-              <a key={l} href={h} style={{ color: "#888", fontSize: 15, textDecoration: "none", fontWeight: 500 }}>{l}</a>
-            ))}
-          </div>
-          <a href="https://app.ziggyhq.com/signup" style={{ background: ACCENT, color: "#fff", textDecoration: "none", padding: "9px 20px", borderRadius: 8, fontSize: 14, fontWeight: 700 }}>
-            Start Free Trial
-          </a>
-        </div>
-      </nav>
+    <div className="bg-[#0a0a0a] min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+      <MarketingNav />
 
-      <section style={{ padding: "80px 24px 40px", textAlign: "center", maxWidth: 680, margin: "0 auto" }}>
-        <h1 style={{ fontSize: "clamp(36px,5vw,52px)", fontWeight: 700, letterSpacing: "-1.5px", marginBottom: 16 }}>What's New</h1>
-        <p style={{ fontSize: 17, color: "#777", lineHeight: 1.6 }}>
-          New features, improvements, and fixes — straight from the team.
-        </p>
-      </section>
-
-      <section style={{ maxWidth: 740, margin: "0 auto", padding: "40px 24px 100px" }}>
-        {/* Timeline */}
-        <div style={{ position: "relative", paddingLeft: 32 }}>
-          <div style={{ position: "absolute", left: 10, top: 0, bottom: 0, width: 2, background: "#1f1f1f" }} />
-
-          {/* v1.0.0 */}
-          <div style={{ position: "relative", marginBottom: 64 }}>
-            <div style={{ position: "absolute", left: -27, top: 6, width: 14, height: 14, borderRadius: "50%", background: ACCENT, border: "2px solid #0a0a0a" }} />
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-              <span style={{ background: `rgba(255,0,110,0.15)`, color: ACCENT, border: `1px solid rgba(255,0,110,0.3)`, borderRadius: 99, padding: "4px 12px", fontSize: 12, fontWeight: 700, letterSpacing: "0.05em" }}>v1.0.0</span>
-              <span style={{ fontSize: 14, color: "#555", fontWeight: 600 }}>April 2026</span>
-              <span style={{ fontSize: 12, color: "#333", background: "#111", border: "1px solid #1f1f1f", borderRadius: 99, padding: "3px 10px" }}>Initial Launch</span>
-            </div>
-            <div style={{ background: "#111", border: "1px solid #1f1f1f", borderRadius: 16, padding: "28px 28px 24px" }}>
-              <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 16 }}>🚀 ZiggyHQ is live</h3>
-              <p style={{ fontSize: 14, color: "#666", marginBottom: 20, lineHeight: 1.6 }}>
-                We've been building ZiggyHQ for months. Today it's open for everyone. Here's everything you get on day one:
-              </p>
-              <ul style={{ listStyle: "disc", paddingLeft: 20, display: "flex", flexDirection: "column", gap: 6 }}>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"Visual drag-and-drop sales pipeline with customizable stages"}</li>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"Email sequences with automated follow-up scheduling"}</li>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"Smart lists — dynamic contact segments that auto-update"}</li>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"Action plans — repeatable workflow templates"}</li>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"Contact & lead management with unlimited contacts"}</li>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"Embeddable lead capture forms"}</li>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"Team management with role-based access control"}</li>
-              <li style={{ fontSize: 15, color: "#ccc", lineHeight: 1.7, paddingLeft: 4 }}>{"CSV import and full data export"}</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Coming Soon */}
-          <div style={{ position: "relative" }}>
-            <div style={{ position: "absolute", left: -27, top: 6, width: 14, height: 14, borderRadius: "50%", background: "#1f1f1f", border: "2px solid #1f1f1f" }} />
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-              <span style={{ background: "rgba(255,149,0,0.1)", color: "#ff9500", border: "1px solid rgba(255,149,0,0.25)", borderRadius: 99, padding: "4px 12px", fontSize: 12, fontWeight: 700, letterSpacing: "0.05em" }}>v1.1.0</span>
-              <span style={{ fontSize: 14, color: "#555", fontWeight: 600 }}>Coming May 2026</span>
-            </div>
-            <div style={{ background: "#0d0d0d", border: "1px solid #1a1a1a", borderRadius: 16, padding: "24px 28px" }}>
-              <p style={{ fontSize: 14, color: "#555", lineHeight: 1.7 }}>
-                We ship fast. More updates coming soon — follow us on 
-                <a href="https://x.com/ziggybusiness" style={{ color: ACCENT, textDecoration: "none" }}>X</a> 
-                or subscribe to our 
-                <a href="/blog" style={{ color: ACCENT, textDecoration: "none" }}>blog</a> 
-                for release announcements.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-            <footer style={{ background: "#050505", borderTop: "1px solid #111", padding: "48px 24px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ display: "flex", gap: 28, flexWrap: "wrap", justifyContent: "center", marginBottom: 24 }}>
-            {[["Home", "/"], ["Features", "/features"], ["Pricing", "/#pricing"], ["Contact", "/contact"], ["Changelog", "/changelog"], ["Blog", "/blog"]].map(([l, h]) => (
-              <a key={l} href={h} style={{ color: "#555", fontSize: 14, textDecoration: "none" }}>{l}</a>
-            ))}
-          </div>
-          <p style={{ fontSize: 13, color: "#333", marginBottom: 8 }}>
-            Part of {" "}
-            <a href="https://ziggybusiness.com" style={{ color: "#555", textDecoration: "none" }}>ZiggyTech Business Suite</a>
+      {/* Hero */}
+      <section className="pt-20 pb-16 px-4 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            Changelog
+          </h1>
+          <p className="text-[#b3b3b3] text-lg">
+            What&apos;s new in ZiggyHQ. We ship fast.
           </p>
-          <p style={{ fontSize: 13, color: "#2a2a2a" }}>© 2026 ZiggyHQ. All rights reserved.</p>
         </div>
-      </footer>
-    </>
+      </section>
+
+      {/* Timeline */}
+      <section className="py-12 pb-24 px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-[#2d2d2d] ml-4 hidden md:block" />
+
+            <div className="space-y-16">
+              {changelog.map((release) => (
+                <div key={release.date} className="md:pl-14 relative">
+                  {/* Timeline dot */}
+                  <div className={`absolute left-0 w-9 h-9 rounded-full flex items-center justify-center hidden md:flex ${release.highlight ? 'bg-[#0ea5e9]' : 'bg-[#1a1a1a] border border-[#2d2d2d]'}`}>
+                    {release.highlight ? (
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4 text-[#555]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    )}
+                  </div>
+
+                  {/* Release header */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div>
+                      <h2 className="text-2xl font-bold text-white">{release.date}</h2>
+                      <span className="text-[#b3b3b3] text-sm">{release.version}</span>
+                    </div>
+                    {release.highlight && (
+                      <span className="bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 text-[#0ea5e9] text-xs font-medium px-3 py-1 rounded-full">
+                        Latest
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Entries */}
+                  <div className="space-y-4">
+                    {release.entries.map((entry, i) => {
+                      const config = typeConfig[entry.type] || typeConfig.feature
+                      return (
+                        <div key={i} className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl p-5">
+                          <div className="flex items-start gap-3">
+                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full border flex-shrink-0 mt-0.5 ${config.bg} ${config.color}`}>
+                              {config.label}
+                            </span>
+                            <div>
+                              <h3 className="text-white font-semibold mb-1">{entry.title}</h3>
+                              <p className="text-[#b3b3b3] text-sm leading-relaxed">{entry.description}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Notify CTA */}
+      <section className="py-20 px-4 bg-[#111111] border-t border-[#2d2d2d]">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Want to know when we ship?</h2>
+          <p className="text-[#b3b3b3] mb-8">
+            Start your free trial and get release notes delivered to your inbox.
+          </p>
+          <Link href="/signup" className="bg-[#0ea5e9] text-white rounded-lg px-8 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors inline-block">
+            Start Free Trial
+          </Link>
+        </div>
+      </section>
+
+      <MarketingFooter />
+    </div>
   )
 }

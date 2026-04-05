@@ -1,53 +1,104 @@
-import type { Metadata } from "next";
+import Link from 'next/link'
+import { MarketingNav } from '@/app/components/marketing/Nav'
+import { MarketingFooter } from '@/app/components/marketing/Footer'
 
-export const metadata: Metadata = {
-  title: "ZiggyHQ Blog — Tips, Guides & Insights",
-  description: "Practical guides, how-to articles, and small business tips from the ZiggyHQ team. Learn how to crm & operations smarter.",
-  robots: { index: true, follow: true },
-};
+const placeholderPosts = [
+  {
+    tag: 'Sales Strategy',
+    title: '7 CRM habits that top-performing sales reps swear by',
+    excerpt: 'The difference between reps who hit 150% of quota and those who miss isn\'t talent — it\'s process. Here\'s what the best do differently.',
+    readTime: '6 min read',
+    comingSoon: true,
+  },
+  {
+    tag: 'Pipeline Management',
+    title: 'How to build a sales pipeline that actually converts',
+    excerpt: 'Most pipelines are just wish lists. Learn how to structure stages, set exit criteria, and forecast revenue you can actually bank on.',
+    readTime: '8 min read',
+    comingSoon: true,
+  },
+  {
+    tag: 'AI & Automation',
+    title: 'AI calling is here: how small teams are closing more deals with less effort',
+    excerpt: 'Bland.ai-powered voice agents are qualifying leads 24/7 for businesses our size. Here\'s what we\'ve learned from early adopters.',
+    readTime: '5 min read',
+    comingSoon: true,
+  },
+]
 
 export default function BlogPage() {
   return (
-    <main style={{ background: "#0a0a0a", minHeight: "100vh", fontFamily: "inherit" }}>
-      {/* Nav */}
-      <nav style={{ borderBottom: "1px solid #1f1f1f", padding: "0 24px", height: "64px", display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: "1100px", margin: "0 auto" }}>
-        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <img src="/ziggyhq-wordmark-v3.png" alt="ZiggyHQ" style={{ height: 32, width: "auto" }} />
-        </a>
-        <a href="https://app.ziggyhq.com/signup" style={{ background: "#ff006e", color: "#fff", padding: "8px 20px", borderRadius: "6px", fontSize: "14px", fontWeight: 600, textDecoration: "none" }}>Start Free Trial</a>
-      </nav>
+    <div className="bg-[#0a0a0a] min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+      <MarketingNav />
 
       {/* Hero */}
-      <section style={{ maxWidth: "800px", margin: "0 auto", padding: "80px 24px 60px", textAlign: "center" }}>
-        <div style={{ display: "inline-block", background: "#ff006e22", border: "1px solid #ff006e44", borderRadius: "100px", padding: "6px 16px", fontSize: "12px", fontWeight: 600, color: "#ff006e", marginBottom: "24px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Insights & Guides</div>
-        <h1 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 700, color: "#fff", lineHeight: 1.1, margin: "0 0 20px" }}>
-          The ZiggyHQ Blog
-        </h1>
-        <p style={{ fontSize: "18px", color: "#888", lineHeight: 1.6, margin: "0 0 40px" }}>
-          Practical guides and how-to articles for small businesses. Topics covering crm & operations, team management, and building better workflows — coming soon.
-        </p>
-
-        {/* Coming Soon Card */}
-        <div style={{ background: "#111", border: "1px solid #1f1f1f", borderRadius: "16px", padding: "48px 40px", display: "inline-block", maxWidth: "500px", width: "100%" }}>
-          <div style={{ fontSize: "40px", marginBottom: "16px" }}>✍️</div>
-          <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#fff", margin: "0 0 12px" }}>Articles coming soon</h2>
-          <p style={{ fontSize: "15px", color: "#666", margin: "0 0 28px", lineHeight: 1.6 }}>
-            We're building out our library of guides for small business owners. Check back soon — or start your free trial while you wait.
+      <section className="pt-20 pb-16 px-4 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            ZiggyHQ Blog
+          </h1>
+          <p className="text-xl text-[#b3b3b3] max-w-xl mx-auto">
+            CRM tips, sales strategies, and business growth — written for teams that want to close more.
           </p>
-          <a
-            href="https://app.ziggyhq.com/signup"
-            style={{ display: "inline-block", background: "#ff006e", color: "#fff", padding: "12px 28px", borderRadius: "8px", fontWeight: 600, fontSize: "15px", textDecoration: "none" }}
-          >
-            Start Free Trial — 14 days free
-          </a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{ borderTop: "1px solid #1f1f1f", padding: "32px 24px", textAlign: "center", color: "#444", fontSize: "13px" }}>
-        <p>© 2026 ZiggyHQ · <a href="/" style={{ color: "#666", textDecoration: "none" }}>Home</a> · <a href="/pricing" style={{ color: "#666", textDecoration: "none" }}>Pricing</a> · <a href="/privacy" style={{ color: "#666", textDecoration: "none" }}>Privacy</a> · <a href="/terms" style={{ color: "#666", textDecoration: "none" }}>Terms</a></p>
-        <p style={{ marginTop: "8px" }}>Part of <a href="https://ziggybusiness.com" style={{ color: "#ff006e", textDecoration: "none" }}>ZiggyTech Business Suite</a></p>
-      </footer>
-    </main>
-  );
+      {/* Placeholder posts */}
+      <section className="py-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            {placeholderPosts.map((post) => (
+              <div key={post.title} className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl overflow-hidden">
+                {/* Thumbnail placeholder */}
+                <div className="aspect-[16/9] bg-[#111] flex items-center justify-center border-b border-[#2d2d2d]">
+                  <p className="text-[#555] text-xs">Article image coming soon</p>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[#0ea5e9] text-xs font-medium">{post.tag}</span>
+                    <span className="bg-[#2d2d2d] text-[#b3b3b3] text-xs px-2 py-0.5 rounded-full">Coming Soon</span>
+                  </div>
+                  <h3 className="text-white font-semibold text-base mb-2 leading-snug">{post.title}</h3>
+                  <p className="text-[#b3b3b3] text-xs leading-relaxed mb-4">{post.excerpt}</p>
+                  <p className="text-[#555] text-xs">{post.readTime}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Email capture */}
+          <div className="bg-[#111111] border border-[#2d2d2d] rounded-2xl p-10 text-center max-w-2xl mx-auto">
+            <div className="w-12 h-12 bg-[#0ea5e9]/10 rounded-full flex items-center justify-center mx-auto mb-5 text-[#0ea5e9]">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-3">The blog launches soon</h2>
+            <p className="text-[#b3b3b3] text-sm mb-6 max-w-md mx-auto">
+              We&apos;re writing practical, no-fluff content for sales teams. Drop your email and we&apos;ll notify you the moment we publish.
+            </p>
+            <form
+              className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <input
+                type="email"
+                placeholder="you@company.com"
+                className="flex-1 bg-[#0a0a0a] border border-[#2d2d2d] rounded-lg px-4 py-3 text-white text-sm placeholder-[#555] focus:outline-none focus:border-[#0ea5e9] transition-colors"
+              />
+              <button
+                type="submit"
+                className="bg-[#0ea5e9] text-white rounded-lg px-5 py-3 text-sm font-medium hover:bg-[#0ea5e9]/90 transition-colors whitespace-nowrap"
+              >
+                Notify Me
+              </button>
+            </form>
+            <p className="text-[#555] text-xs mt-3">No spam. Unsubscribe anytime.</p>
+          </div>
+        </div>
+      </section>
+
+      <MarketingFooter />
+    </div>
+  )
 }

@@ -1,38 +1,45 @@
-import type { Metadata } from "next"
-import "./globals.css"
+import type { Metadata } from "next";
+import { Bebas_Neue, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+import CookieBanner from "@/app/components/CookieBanner";
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  variable: "--font-bebas-neue",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-space-grotesk",
+});
 
 export const metadata: Metadata = {
-  title: "ZiggyHQ — CRM for Small Business | $49/mo",
-  description: "ZiggyHQ is the affordable GoHighLevel alternative for small business. Visual pipeline, email sequences, smart lists, and team management — starting at $49/mo. No credit card required.",
-  keywords: "small business CRM, GoHighLevel alternative, CRM software, sales pipeline software, contact management, email sequences, CRM for real estate, CRM for contractors",
+  title: "ZiggyHQ — CRM & Business Operations",
+  description: "The CRM built for small businesses. Visual pipelines, email sequences, power dialer, team management, and automations — all in one place. 14-day free trial.",
   openGraph: {
-    title: "ZiggyHQ — CRM for Small Business | $49/mo",
-    description: "The GoHighLevel alternative built for small business. Powerful CRM without the complexity or $297/mo price tag.",
+    title: "ZiggyHQ — CRM & Business Operations",
+    description: "The CRM built for small businesses. Visual pipelines, email sequences, power dialer, and automations. Start free for 14 days.",
     siteName: "ZiggyHQ",
-    type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "ZiggyHQ — CRM for Small Business | $49/mo",
-    description: "The GoHighLevel alternative built for small business. Starting at $49/mo.",
-  },
-
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: '/favicon.png',
+    apple: '/favicon-192.png',
   },
-}
+};
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </head>
-      <body style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{children}</body>
+    <html lang="en" className={`${bebasNeue.variable} ${spaceGrotesk.variable} h-full`}>
+      <body className="h-full bg-background text-white antialiased">
+        {children}
+        <CookieBanner />
+      </body>
     </html>
-  )
+  );
 }

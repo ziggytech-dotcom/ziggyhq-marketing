@@ -1,234 +1,286 @@
-import type { Metadata } from "next"
+'use client'
 
-export const metadata: Metadata = {
-  title: "Pricing — ZiggyHQ CRM",
-  description: "Simple, transparent pricing. ZiggyHQ starts at $49/mo. Starter, Pro, and Business plans for teams of all sizes.",
-  openGraph: {
-    title: "ZiggyHQ Pricing — CRM for closers",
-    description: "Starter $49/mo · Pro $99/mo · Business $199/mo. 14-day free trial, no credit card required.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
-  },
-}
+import { useState } from 'react'
+import Link from 'next/link'
+import { MarketingNav } from '@/app/components/marketing/Nav'
+import { MarketingFooter } from '@/app/components/marketing/Footer'
 
-const ACCENT = "#ff006e"
-const SIGNUP = "https://app.ziggyhq.com/signup"
-const LOGIN  = "https://app.ziggyhq.com/login"
+const starterFeatures = [
+  'Visual pipeline & deal tracking',
+  'Contact management (unlimited)',
+  'Email sequences & automation',
+  'Forms & lead capture',
+  'Basic reporting & analytics',
+  'Gmail & Google Calendar sync',
+  'CSV import / export',
+  'Mobile-responsive app',
+  'Email support',
+]
 
-const tiers = [
+const proFeatures = [
+  'Everything in Starter',
+  'Power dialer (Twilio)',
+  'AI calling agent (Bland.ai)',
+  'Advanced automation engine',
+  'Action plans & follow-up rules',
+  'White label branding',
+  'Team management & routing',
+  'Smart lists & segmentation',
+  'Advanced reporting & forecasting',
+  'Priority support',
+  'Custom fields (unlimited)',
+  'API access',
+]
+
+const comparisonRows = [
+  { feature: 'Seats included', starter: '1 seat', pro: '5 seats' },
+  { feature: 'Additional seats', starter: '$12/seat/mo', pro: '$10/seat/mo' },
+  { feature: 'Pipeline & deal tracking', starter: true, pro: true },
+  { feature: 'Contact management', starter: true, pro: true },
+  { feature: 'Email sequences', starter: true, pro: true },
+  { feature: 'Forms & lead capture', starter: true, pro: true },
+  { feature: 'Gmail / Calendar sync', starter: true, pro: true },
+  { feature: 'Basic reporting', starter: true, pro: true },
+  { feature: 'Power dialer (Twilio)', starter: false, pro: true },
+  { feature: 'AI calling (Bland.ai)', starter: false, pro: true },
+  { feature: 'Automation engine', starter: false, pro: true },
+  { feature: 'Action plans', starter: false, pro: true },
+  { feature: 'White label branding', starter: false, pro: true },
+  { feature: 'Team routing & assignment', starter: false, pro: true },
+  { feature: 'Advanced forecasting', starter: false, pro: true },
+  { feature: 'API access', starter: false, pro: true },
+  { feature: 'Priority support', starter: false, pro: true },
+]
+
+const faqs = [
   {
-    name: "Starter",
-    price: "$49",
-    period: "/mo",
-    description: "Perfect for solo closers getting started.",
-    features: [
-      "1 user seat",
-      "Up to 500 leads",
-      "Pipeline & deal tracking",
-      "Email magic link login",
-      "Basic lead forms",
-      "Task management",
-      "Mobile-friendly UI",
-    ],
-    cta: "Start Free Trial",
-    href: SIGNUP,
-    highlighted: false,
+    q: 'Can I change plans anytime?',
+    a: 'Yes. Upgrade or downgrade anytime from your account settings. Changes take effect immediately and billing is prorated.',
   },
   {
-    name: "Pro",
-    price: "$99",
-    period: "/mo",
-    description: "For growing sales teams that need more power.",
-    features: [
-      "5 user seats",
-      "Unlimited leads",
-      "AI follow-up sequences",
-      "Gmail & Outlook sync",
-      "Zapier + API integrations",
-      "Smart lists & filters",
-      "Dialer integration",
-      "Custom fields",
-    ],
-    cta: "Start Free Trial",
-    href: SIGNUP,
-    highlighted: true,
+    q: 'What happens after the free trial?',
+    a: 'After 14 days, you\'ll choose a plan to continue. If you don\'t add a payment method, your account is paused — your data is kept for 30 days.',
   },
   {
-    name: "Business",
-    price: "$199",
-    period: "/mo",
-    description: "Serious teams with serious pipelines.",
-    features: [
-      "15 user seats",
-      "Everything in Pro",
-      "Priority support",
-      "Custom domain",
-      "Advanced reporting & analytics",
-      "Action plans & automation",
-      "Team management & roles",
-      "SSO login",
-    ],
-    cta: "Start Free Trial",
-    href: SIGNUP,
-    highlighted: false,
+    q: 'How does seat pricing work?',
+    a: 'Each plan includes base seats. Add more at the per-seat rate. Seats are billed monthly alongside your base plan.',
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    description: "Unlimited scale. Dedicated support.",
-    features: [
-      "Unlimited users",
-      "Everything in Business",
-      "Dedicated account manager",
-      "SLA guarantee",
-      "Custom integrations",
-      "White-label option",
-      "Onboarding & training",
-    ],
-    cta: "Contact Sales",
-    href: "mailto:hello@ziggyhq.com",
-    highlighted: false,
+    q: 'Is there an annual discount?',
+    a: 'Yes — pay annually and save 10%. That\'s $313/yr for Starter (vs $348) and $529/yr for Pro (vs $588).',
+  },
+  {
+    q: 'Do you offer refunds?',
+    a: 'We offer a 30-day money-back guarantee on your first payment. After that, plans are non-refundable but you can cancel before your next billing cycle.',
+  },
+  {
+    q: 'What payment methods do you accept?',
+    a: 'All major credit cards via Stripe. We\'ll add ACH and invoicing for annual plans on request.',
   },
 ]
 
 export default function PricingPage() {
-  return (
-    <>
-      <style>{`@media(max-width:768px){.nav-links{display:none!important}}`}</style>
+  const [isAnnual, setIsAnnual] = useState(false)
 
-      {/* Nav */}
-      <nav style={{
-        position: "sticky", top: 0, zIndex: 100,
-        background: "rgba(10,10,10,0.92)", backdropFilter: "blur(12px)",
-        borderBottom: "1px solid #1f1f1f", padding: "0 24px",
-      }}>
-        <div style={{ maxWidth: 1120, margin: "0 auto", height: 64, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="/" style={{ textDecoration: "none" }}>
-            <img src="/ziggyhq-wordmark-v3.png" alt="ZiggyHQ" style={{ height: 32, width: "auto" }} />
-          </a>
-          <div className="nav-links" style={{ display: "flex", gap: 28 }}>
-            {[["Features", "/features"], ["Pricing", "/pricing"], ["Blog", "/blog"], ["Sign In", LOGIN]].map(([l, h]) => (
-              <a key={l} href={h} style={{ color: l === "Pricing" ? "#fff" : "#888", fontSize: 15, textDecoration: "none", fontWeight: l === "Pricing" ? 600 : 500 }}>{l}</a>
-            ))}
-          </div>
-          <a href={SIGNUP} style={{ background: ACCENT, color: "#fff", textDecoration: "none", padding: "9px 20px", borderRadius: 8, fontSize: 14, fontWeight: 700 }}>
-            Start Free Trial
-          </a>
-        </div>
-      </nav>
+  const starterPrice = isAnnual ? 26 : 29
+  const proPrice = isAnnual ? 44 : 49
+
+  return (
+    <div className="bg-[#0a0a0a] min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+      <MarketingNav />
 
       {/* Hero */}
-      <section style={{ padding: "80px 24px 48px", textAlign: "center", maxWidth: 680, margin: "0 auto" }}>
-        <div style={{
-          display: "inline-block", background: `${ACCENT}18`, border: `1px solid ${ACCENT}40`,
-          borderRadius: 99, padding: "6px 16px", fontSize: 13, color: ACCENT, fontWeight: 600,
-          marginBottom: 24, letterSpacing: "0.02em",
-        }}>
-          Simple, transparent pricing
-        </div>
-        <h1 style={{ fontSize: "clamp(36px,5vw,56px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-1.5px", marginBottom: 20, color: "#fff" }}>
-          Close more deals.<br />
-          <span style={{ background: `linear-gradient(135deg, #fff 0%, ${ACCENT} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-            Pay less than you think.
-          </span>
+      <section className="pt-20 pb-16 px-4 text-center">
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          Simple, transparent{' '}
+          <span className="text-[#0ea5e9]">pricing</span>
         </h1>
-        <p style={{ fontSize: 18, color: "#888", lineHeight: 1.6, maxWidth: 520, margin: "0 auto" }}>
-          ZiggyHQ is the CRM built for closers. No bloat, no complexity — just the tools you need to win.
+        <p className="text-xl text-[#b3b3b3] max-w-xl mx-auto mb-10">
+          No hidden fees. No long-term contracts. Start free for 14 days.
         </p>
+
+        {/* Toggle */}
+        <div className="flex items-center justify-center gap-4">
+          <span className={`text-sm font-medium ${!isAnnual ? 'text-white' : 'text-[#b3b3b3]'}`}>Monthly</span>
+          <button
+            onClick={() => setIsAnnual(!isAnnual)}
+            className={`relative w-12 h-6 rounded-full transition-colors ${isAnnual ? 'bg-[#0ea5e9]' : 'bg-[#2d2d2d]'}`}
+          >
+            <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${isAnnual ? 'translate-x-7' : 'translate-x-1'}`} />
+          </button>
+          <span className={`text-sm font-medium ${isAnnual ? 'text-white' : 'text-[#b3b3b3]'}`}>
+            Annual <span className="text-[#0ea5e9] text-xs ml-1">Save 10%</span>
+          </span>
+        </div>
       </section>
 
-      {/* Pricing Cards */}
-      <section style={{ maxWidth: 1120, margin: "0 auto", padding: "0 24px 80px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              style={{
-                position: "relative",
-                background: tier.highlighted ? `${ACCENT}0d` : "#111",
-                border: `1px solid ${tier.highlighted ? ACCENT : "#1f1f1f"}`,
-                borderRadius: 20,
-                padding: "28px 24px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              {tier.highlighted && (
-                <div style={{
-                  position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
-                  background: ACCENT, color: "#fff", padding: "4px 14px", borderRadius: 99,
-                  fontSize: 12, fontWeight: 700, whiteSpace: "nowrap",
-                }}>
-                  Most Popular
-                </div>
-              )}
-
-              <div style={{ marginBottom: 20 }}>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#fff", marginBottom: 8 }}>{tier.name}</h3>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
-                  <span style={{ fontSize: 40, fontWeight: 700, color: tier.highlighted ? ACCENT : "#fff", letterSpacing: "-1px" }}>{tier.price}</span>
-                  {tier.period && <span style={{ color: "#666", fontSize: 14 }}>{tier.period}</span>}
-                </div>
-                <p style={{ color: "#666", fontSize: 13, lineHeight: 1.5 }}>{tier.description}</p>
+      {/* Pricing cards */}
+      <section className="pb-24 px-4">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Starter */}
+          <div className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-2xl p-8 flex flex-col">
+            <h3 className="text-white font-bold text-2xl mb-2">Starter</h3>
+            <p className="text-[#b3b3b3] text-sm mb-8">For solo operators and small teams getting started</p>
+            <div className="mb-8">
+              <div className="flex items-end gap-1">
+                <span className="text-white font-bold text-6xl">${starterPrice}</span>
+                <span className="text-[#b3b3b3] text-sm mb-2">/mo</span>
               </div>
+              {isAnnual && <p className="text-[#0ea5e9] text-xs mt-1">Billed annually · Save $36/yr</p>}
+              <p className="text-[#b3b3b3] text-sm mt-2">1 seat included</p>
+              <p className="text-[#b3b3b3] text-xs mt-1">+$12/seat/mo for additional seats</p>
+            </div>
+            <Link
+              href="/signup"
+              className="block text-center border border-[#2d2d2d] text-white rounded-lg px-6 py-3 font-medium hover:bg-[#2d2d2d] transition-colors mb-8"
+            >
+              Start Free Trial
+            </Link>
+            <ul className="space-y-3 flex-1">
+              {starterFeatures.map((f) => (
+                <li key={f} className="flex items-start gap-3 text-sm text-[#b3b3b3]">
+                  <svg className="w-4 h-4 text-[#0ea5e9] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", flex: 1, display: "flex", flexDirection: "column", gap: 10 }}>
-                {tier.features.map((f) => (
-                  <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 8, color: "#888", fontSize: 13 }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 2 }}>
-                      <path d="M5 13l4 4L19 7" />
-                    </svg>
-                    {f}
-                  </li>
+          {/* Pro */}
+          <div className="bg-[#0ea5e9]/10 border-2 border-[#0ea5e9] rounded-2xl p-8 flex flex-col relative">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span className="bg-[#0ea5e9] text-white text-xs font-semibold px-3 py-1 rounded-full">Most Popular</span>
+            </div>
+            <h3 className="text-white font-bold text-2xl mb-2">Pro</h3>
+            <p className="text-[#b3b3b3] text-sm mb-8">For growing sales teams that need the full stack</p>
+            <div className="mb-8">
+              <div className="flex items-end gap-1">
+                <span className="text-white font-bold text-6xl">${proPrice}</span>
+                <span className="text-[#b3b3b3] text-sm mb-2">/mo</span>
+              </div>
+              {isAnnual && <p className="text-[#0ea5e9] text-xs mt-1">Billed annually · Save $60/yr</p>}
+              <p className="text-[#b3b3b3] text-sm mt-2">5 seats included</p>
+              <p className="text-[#b3b3b3] text-xs mt-1">+$10/seat/mo for additional seats</p>
+            </div>
+            <Link
+              href="/signup"
+              className="block text-center bg-[#0ea5e9] text-white rounded-lg px-6 py-3 font-medium hover:bg-[#0ea5e9]/90 transition-colors mb-8"
+            >
+              Start Free Trial
+            </Link>
+            <ul className="space-y-3 flex-1">
+              {proFeatures.map((f) => (
+                <li key={f} className="flex items-start gap-3 text-sm text-[#b3b3b3]">
+                  <svg className="w-4 h-4 text-[#0ea5e9] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Complete Suite banner */}
+        <div className="max-w-4xl mx-auto mt-8">
+          <div className="bg-gradient-to-r from-[#ff1744]/10 to-[#0ea5e9]/10 border border-[#2d2d2d] rounded-2xl p-6 text-center">
+            <h3 className="text-white font-bold text-lg mb-2">
+              🚀 Using multiple ZiggyTech apps?
+            </h3>
+            <p className="text-[#b3b3b3] text-sm mb-4">
+              Get all 10 apps in the ZiggyTech Business Suite for <span className="text-white font-semibold">$179/mo</span> — saving you hundreds compared to individual pricing.
+            </p>
+            <a href="https://ziggytechventures.com/suite" className="text-[#0ea5e9] text-sm font-medium hover:underline">
+              Learn about the Complete Suite →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature comparison table */}
+      <section className="py-24 px-4 bg-[#111111] border-t border-[#2d2d2d]">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-white text-center mb-12">Full feature comparison</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-[#2d2d2d]">
+                  <th className="text-left py-4 px-4 text-[#b3b3b3] font-medium text-sm">Feature</th>
+                  <th className="text-center py-4 px-4 text-white font-semibold">Starter</th>
+                  <th className="text-center py-4 px-4 text-[#0ea5e9] font-semibold">Pro</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row, i) => (
+                  <tr key={row.feature} className={`border-b border-[#2d2d2d]/50 ${i % 2 === 0 ? 'bg-[#0a0a0a]/30' : ''}`}>
+                    <td className="py-3 px-4 text-[#b3b3b3] text-sm">{row.feature}</td>
+                    <td className="py-3 px-4 text-center">
+                      {typeof row.starter === 'boolean' ? (
+                        row.starter ? (
+                          <svg className="w-5 h-5 text-[#0ea5e9] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : (
+                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        )
+                      ) : (
+                        <span className="text-[#b3b3b3] text-sm">{row.starter}</span>
+                      )}
+                    </td>
+                    <td className="py-3 px-4 text-center">
+                      {typeof row.pro === 'boolean' ? (
+                        row.pro ? (
+                          <svg className="w-5 h-5 text-[#0ea5e9] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : (
+                          <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        )
+                      ) : (
+                        <span className="text-white font-medium text-sm">{row.pro}</span>
+                      )}
+                    </td>
+                  </tr>
                 ))}
-              </ul>
-
-              <a
-                href={tier.href}
-                style={{
-                  display: "block", textAlign: "center", padding: "11px 16px", borderRadius: 10,
-                  fontSize: 14, fontWeight: 600, textDecoration: "none",
-                  background: tier.highlighted ? ACCENT : "transparent",
-                  color: tier.highlighted ? "#fff" : "#ccc",
-                  border: tier.highlighted ? "none" : "1px solid #2d2d2d",
-                }}
-              >
-                {tier.cta}
-              </a>
-            </div>
-          ))}
-        </div>
-
-        <p style={{ textAlign: "center", fontSize: 14, color: "#555", marginTop: 36 }}>
-          All plans include a 14-day free trial. No credit card required.{" "}
-          <a href={LOGIN} style={{ color: ACCENT, textDecoration: "none" }}>Already have an account?</a>
-        </p>
-      </section>
-
-      {/* FAQ */}
-      <section style={{ maxWidth: 700, margin: "0 auto", padding: "0 24px 100px" }}>
-        <h2 style={{ fontSize: 28, fontWeight: 700, textAlign: "center", marginBottom: 36 }}>Common questions</h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {[
-            { q: "Can I switch plans anytime?", a: "Yes. Upgrade or downgrade at any time — changes take effect immediately and billing is prorated." },
-            { q: "What happens after the free trial?", a: "You'll be prompted to pick a plan. If you don't, your account is paused (not deleted). Your data is safe." },
-            { q: "Do you offer annual billing?", a: "Coming soon. For now, all plans are month-to-month with no annual commitment." },
-            { q: "Is there a discount for nonprofits or startups?", a: "Email hello@ziggyhq.com and we'll work something out." },
-          ].map((item) => (
-            <div key={item.q} style={{ background: "#111", border: "1px solid #1f1f1f", borderRadius: 14, padding: "20px 24px" }}>
-              <h3 style={{ fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 8 }}>{item.q}</h3>
-              <p style={{ fontSize: 14, color: "#666", lineHeight: 1.6, margin: 0 }}>{item.a}</p>
-            </div>
-          ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{ borderTop: "1px solid #1a1a1a", padding: "32px 24px", textAlign: "center" }}>
-        <p style={{ color: "#555", fontSize: 13 }}>
-          © 2026 ZiggyHQ · <a href="/privacy" style={{ color: "#555", textDecoration: "none" }}>Privacy</a> · <a href="/terms" style={{ color: "#555", textDecoration: "none" }}>Terms</a>
-        </p>
-      </footer>
-    </>
+      {/* Pricing FAQ */}
+      <section className="py-24 px-4 bg-[#0a0a0a]">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-white text-center mb-12">Pricing questions</h2>
+          <div className="space-y-5">
+            {faqs.map((faq) => (
+              <div key={faq.q} className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl p-6">
+                <h3 className="text-white font-semibold mb-3">{faq.q}</h3>
+                <p className="text-[#b3b3b3] text-sm leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 px-4 bg-[#111111] border-t border-[#2d2d2d]">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-4">Start free. Scale when you&apos;re ready.</h2>
+          <p className="text-[#b3b3b3] text-lg mb-8">14-day trial, full Pro access, no credit card.</p>
+          <Link href="/signup" className="bg-[#0ea5e9] text-white rounded-lg px-10 py-4 font-semibold text-lg hover:bg-[#0ea5e9]/90 transition-colors inline-block">
+            Start Free Trial
+          </Link>
+        </div>
+      </section>
+
+      <MarketingFooter />
+    </div>
   )
 }
