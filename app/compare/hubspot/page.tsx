@@ -148,12 +148,12 @@ export default function CompareHubSpotPage() {
                 {comparisonRows.map((row, i) => (
                   <tr key={row.feature} className={`border-b border-[#2d2d2d]/50 ${i % 2 === 0 ? 'bg-[#0a0a0a]/30' : ''}`}>
                     <td className="py-3 px-4 text-[#b3b3b3] text-sm">{row.feature}</td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-3 px-4 text-center bg-[#0ea5e9]/5">
                       {typeof row.ziggy === 'boolean' ? (
                         row.ziggy ? (
-                          <span className="text-[#22c55e] text-2xl font-bold"></span>
+                          <span className="text-[#22c55e] text-2xl font-bold">✓</span>
                         ) : (
-                          <span className="text-[#e11d48] text-2xl font-bold"></span>
+                          <span className="text-[#e11d48] text-xl font-bold">✗</span>
                         )
                       ) : (
                         <span className="text-white text-sm font-medium">{row.ziggy}</span>
@@ -162,9 +162,9 @@ export default function CompareHubSpotPage() {
                     <td className="py-3 px-4 text-center">
                       {typeof row.hs === 'boolean' ? (
                         row.hs ? (
-                          <span className="text-[#6b7280] text-xl"></span>
+                          <span className="text-[#6b7280] text-lg">✓</span>
                         ) : (
-                          <span className="text-[#e11d48] text-xl"></span>
+                          <span className="text-[#e11d48] text-xl font-bold">✗</span>
                         )
                       ) : (
                         <span className="text-[#b3b3b3] text-sm">{row.hs}</span>
