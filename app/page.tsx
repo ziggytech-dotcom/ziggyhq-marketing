@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { MarketingNav } from '@/app/components/Nav'
 import { MarketingFooter } from '@/app/components/Footer'
@@ -91,32 +91,25 @@ const faqs = [
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
-  const [counted, setCounted] = useState(false)
-  const statsRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !counted) {
-          setCounted(true)
-        }
-      },
-      { threshold: 0.3 }
-    )
-    if (statsRef.current) observer.observe(statsRef.current)
-    return () => observer.disconnect()
-  }, [counted])
 
   return (
     <div className="bg-[#0a0a0a] min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
       <MarketingNav />
 
       {/* Section 1: Hero */}
-      <section className="relative overflow-hidden pt-32 pb-24 px-4">
+      <section className="relative overflow-hidden pt-32 pb-24 px-4 bg-[#0a0a0a]">
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-[#0ea5e9]/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-[#0ea5e9]/12 rounded-full blur-3xl" />
           <div className="absolute top-1/4 left-1/4 w-[400px] h-[300px] bg-[#0ea5e9]/5 rounded-full blur-3xl" />
+          {/* Grid pattern */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.03]"
+            style={{
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+              backgroundSize: '64px 64px'
+            }}
+          />
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center">
@@ -205,7 +198,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 3: Features */}
-      <section className="py-24 md:py-32 px-4 bg-[#0a0a0a]">
+      <section className="py-24 md:py-32 px-4 bg-gradient-to-b from-[#0a0a0a] via-[#0c0f14] to-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 md:mb-20">
             <p className="text-xs font-semibold uppercase tracking-widest text-[#0ea5e9] mb-3">Features</p>
@@ -242,7 +235,9 @@ export default function HomePage() {
       </section>
 
       {/* Section 4: Founding Story */}
-      <section className="py-24 md:py-32 px-4 bg-gradient-to-b from-[#0a0a0a] via-[#0d1520] to-[#0a0a0a]">
+      <section className="relative overflow-hidden py-24 md:py-32 px-4 bg-gradient-to-br from-[#080c10] via-[#0d1828] to-[#080c10]">
+        <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-[#0ea5e9]/6 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[300px] bg-[#8b5cf6]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#0ea5e9] mb-4">Our story</p>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">We&apos;ve been in your shoes</h2>
@@ -260,17 +255,15 @@ export default function HomePage() {
               That&apos;s ZiggyHQ. Built by people who get it, for people who need it.
             </p>
           </div>
-          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
             {[
-              { value: '$29', label: 'Starting price', suffix: '/mo', color: '#0ea5e9' },
-              { value: '10', label: 'Apps in the suite', suffix: ' apps', color: '#10b981' },
-              { value: '1', label: 'Login for everything', suffix: ' login', color: '#f97316' },
-              { value: '14', label: 'Days free to try', suffix: ' days', color: '#8b5cf6' },
+              { value: '$29/mo', label: 'Starting price', color: '#0ea5e9' },
+              { value: '10 apps', label: 'In the suite', color: '#10b981' },
+              { value: '1 login', label: 'For everything', color: '#f97316' },
+              { value: '14 days', label: 'Free to try', color: '#8b5cf6' },
             ].map((item, i) => (
               <div key={i} className="bg-[#111111] border border-[#1f1f1f] rounded-xl p-5 text-center hover:border-[#0ea5e9]/30 transition-colors">
-                <p className="text-3xl font-bold mb-1 transition-all duration-1000" style={{ color: item.color }}>
-                  {counted ? item.value : '0'}{item.suffix}
-                </p>
+                <p className="text-2xl font-bold mb-1" style={{ color: item.color }}>{item.value}</p>
                 <p className="text-sm text-[#b3b3b3]">{item.label}</p>
               </div>
             ))}
@@ -279,7 +272,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 5: Pricing Teaser */}
-      <section className="py-24 md:py-32 px-4 bg-[#0d0d0d]">
+      <section className="py-24 md:py-32 px-4 bg-gradient-to-b from-[#0d0d0d] via-[#0a0e14] to-[#0d0d0d]">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#0ea5e9] mb-4">Pricing</p>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Simple, honest pricing</h2>
@@ -364,7 +357,7 @@ export default function HomePage() {
       </section>
 
       {/* Section 6: FAQ Accordion */}
-      <section className="py-24 md:py-32 px-4 bg-[#0a0a0a]">
+      <section className="py-24 md:py-32 px-4 bg-[#080808]">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs font-semibold uppercase tracking-widest text-[#0ea5e9] mb-4">FAQ</p>
@@ -411,7 +404,8 @@ export default function HomePage() {
       </section>
 
       {/* Section 7: Final CTA */}
-      <section className="py-24 md:py-32 px-4 bg-gradient-to-b from-[#0d0d0d] to-[#0a0a0a]">
+      <section className="relative overflow-hidden py-24 md:py-32 px-4 bg-gradient-to-br from-[#080c10] via-[#0c1520] to-[#080c10]">
+        <div className="absolute inset-0 bg-[#0ea5e9]/4 rounded-3xl blur-3xl pointer-events-none" />
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Ready to run your business
