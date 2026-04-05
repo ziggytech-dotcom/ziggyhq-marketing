@@ -105,7 +105,7 @@ export default function PricingPage() {
             onClick={() => setIsAnnual(!isAnnual)}
             className={`relative w-12 h-6 rounded-full transition-colors ${isAnnual ? 'bg-[#0ea5e9]' : 'bg-[#2d2d2d]'}`}
           >
-            <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${isAnnual ? 'translate-x-6' : 'translate-x-1'}`} />
+            <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${isAnnual ? 'translate-x-5' : 'translate-x-1'}`} />
           </button>
           <span className={`text-sm font-medium ${isAnnual ? 'text-white' : 'text-[#b3b3b3]'}`}>
             Annual <span className="text-[#0ea5e9] text-xs ml-1">Save 10%</span>
