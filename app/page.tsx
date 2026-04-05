@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { MarketingNav } from '@/app/components/Nav'
 import { MarketingFooter } from '@/app/components/Footer'
@@ -91,6 +91,21 @@ const faqs = [
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [counted, setCounted] = useState(false)
+  const statsRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !counted) {
+          setCounted(true)
+        }
+      },
+      { threshold: 0.3 }
+    )
+    if (statsRef.current) observer.observe(statsRef.current)
+    return () => observer.disconnect()
+  }, [counted])
 
   return (
     <div className="bg-[#0a0a0a] min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
@@ -245,15 +260,17 @@ export default function HomePage() {
               That&apos;s ZiggyHQ. Built by people who get it, for people who need it.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
             {[
-              { stat: '$29/mo', label: 'Starting price' },
-              { stat: '10 apps', label: 'In the suite' },
-              { stat: '1 login', label: 'For everything' },
-              { stat: '14 days', label: 'Free to try' },
-            ].map((item) => (
-              <div key={item.label} className="bg-[#111111] border border-[#1f1f1f] rounded-xl p-4 text-center">
-                <p className="text-2xl font-bold text-[#0ea5e9] mb-1">{item.stat}</p>
+              { value: '$29', label: 'Starting price', suffix: '/mo', color: '#0ea5e9' },
+              { value: '10', label: 'Apps in the suite', suffix: ' apps', color: '#10b981' },
+              { value: '1', label: 'Login for everything', suffix: ' login', color: '#f97316' },
+              { value: '14', label: 'Days free to try', suffix: ' days', color: '#8b5cf6' },
+            ].map((item, i) => (
+              <div key={i} className="bg-[#111111] border border-[#1f1f1f] rounded-xl p-5 text-center hover:border-[#0ea5e9]/30 transition-colors">
+                <p className="text-3xl font-bold mb-1 transition-all duration-1000" style={{ color: item.color }}>
+                  {counted ? item.value : '0'}{item.suffix}
+                </p>
                 <p className="text-sm text-[#b3b3b3]">{item.label}</p>
               </div>
             ))}
@@ -270,7 +287,7 @@ export default function HomePage() {
             No seat traps. No hidden fees. No &quot;contact sales.&quot; Just a price that works for a real business.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-8">
             {/* Starter */}
             <div className="bg-[#111111] border border-[#1f1f1f] rounded-2xl p-8 text-left">
               <p className="text-sm font-semibold text-[#b3b3b3] uppercase tracking-wider mb-2">Starter</p>
@@ -307,6 +324,34 @@ export default function HomePage() {
                 Start free trial
               </Link>
             </div>
+          </div>
+
+          {/* Competition comparison */}
+          <div className="relative my-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-[#1f1f1f]" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-[#0d0d0d] px-6 py-2 text-sm text-[#b3b3b3]">vs the competition</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+            <div className="bg-[#111111] border border-[#1f1f1f] rounded-xl p-5 text-center">
+              <p className="text-[#b3b3b3] text-sm mb-1">GoHighLevel</p>
+              <p className="text-3xl font-bold text-white">$97<span className="text-lg text-[#b3b3b3]">/mo</span></p>
+              <p className="text-[#e11d48] text-sm mt-1">$68 more per month</p>
+            </div>
+            <div className="bg-[#111111] border border-[#1f1f1f] rounded-xl p-5 text-center">
+              <p className="text-[#b3b3b3] text-sm mb-1">HubSpot</p>
+              <p className="text-3xl font-bold text-white">$90<span className="text-lg text-[#b3b3b3]">/mo</span></p>
+              <p className="text-[#e11d48] text-sm mt-1">$61 more per month</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-4 mb-8 p-4 bg-[#22c55e]/10 border border-[#22c55e]/20 rounded-xl max-w-2xl mx-auto">
+            <p className="text-[#22c55e] font-bold text-lg">Save up to $2,976/year with ZiggyHQ Pro</p>
+            <p className="text-[#b3b3b3] text-sm mt-1">Same features. Half the price. Built for businesses like yours.</p>
           </div>
 
           <Link href="/pricing" className="inline-flex items-center gap-2 text-[#0ea5e9] hover:underline font-medium">
