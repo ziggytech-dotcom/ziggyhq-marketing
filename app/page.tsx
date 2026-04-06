@@ -203,7 +203,7 @@ export default function HomePage() {
           <div className="text-center mb-16 md:mb-20">
             <p className="text-xs font-semibold uppercase tracking-widest text-[#0ea5e9] mb-3">Features</p>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Everything you need to scale sales</h2>
-            <p className="text-lg text-[#b3b3b3] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-[#b3b3b3] max-w-2xl mx-auto leading-relaxed text-center">
               The tools that actually move deals forward. Nothing you won&apos;t use. Everything you will.
             </p>
           </div>
@@ -276,7 +276,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#0ea5e9] mb-4">Pricing</p>
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Simple, honest pricing</h2>
-          <p className="text-lg text-[#b3b3b3] mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#b3b3b3] mb-12 max-w-2xl mx-auto leading-relaxed text-center">
             No seat traps. No hidden fees. No &quot;contact sales.&quot; Just a price that works for a real business.
           </p>
 
