@@ -135,7 +135,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <Link
               href="https://app.ziggyhq.com/signup"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0ea5e9] text-white rounded-xl font-semibold text-lg hover:bg-[#0ea5e9]/90 hover:scale-105 transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0ea5e9] text-white rounded-xl font-semibold text-lg hover:opacity-90 hover:scale-105 transition-all"
             >
               Start Free Trial
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
