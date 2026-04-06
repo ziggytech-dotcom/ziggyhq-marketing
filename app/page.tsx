@@ -127,7 +127,7 @@ export default function HomePage() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-[#b3b3b3] max-w-3xl mx-auto leading-relaxed mb-10">
+          <p className="text-xl md:text-2xl text-[#b3b3b3] max-w-3xl mx-auto leading-relaxed mb-10 text-center">
             We built ZiggyHQ because the CRM options out there cost too much and weren&apos;t built for how local businesses actually work. So we built one that was — and made it affordable for everyone.
           </p>
 
